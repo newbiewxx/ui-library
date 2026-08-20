@@ -18,6 +18,7 @@ defineProps({
   },
 
   disabled: Boolean,
+  text: Boolean,
 });
 
 console.log("组件的命名空间: => ", ns.namespace);
@@ -29,7 +30,10 @@ console.log(ns.is("active", true));
 </script>
 
 <template>
-  <button :class="[ns.b(), ns.m(type), ns.is('round', round), ns.is('disabled', disabled)]" :disabled="disabled">
+  <button
+    :class="[ns.b(), ns.m(type), ns.is('round', round), ns.is('disabled', disabled), ns.is('text', text)]"
+    :disabled="disabled"
+  >
     <!-- $slots 获取模板的所有插槽 -->
     <span v-if="$slots.default">
       <slot></slot>
