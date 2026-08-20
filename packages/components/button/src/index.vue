@@ -59,7 +59,7 @@ defineProps({
       ns.is('circle', circle),
       ns.is('loading', loading),
     ]"
-    :disabled="disabled"
+    :disabled="disabled || loading"
   >
 
     <!-- $slots 获取模板的所有插槽 -->
