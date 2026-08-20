@@ -11,6 +11,11 @@ defineProps({
     type: String,
     default: "default",
   },
+
+  round: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 console.log("组件的命名空间: => ", ns.namespace);
@@ -22,7 +27,7 @@ console.log(ns.is("active", true));
 </script>
 
 <template>
-  <button :class="[ns.b(), ns.m(type)]">
+  <button :class="[ns.b(), ns.m(type), ns.is('round', round)]">
     <!-- $slots 获取模板的所有插槽 -->
     <span v-if="$slots.default">
       <slot></slot>

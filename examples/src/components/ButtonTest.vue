@@ -11,6 +11,17 @@
     <a-button type="warning">警告</a-button>
     <a-button type="error">错误</a-button>
   </div>
+
+  <hr />
+
+  <p>按钮圆角</p>
+  <div class="row-gap">
+    <a-button round>默认</a-button>
+    <a-button type="primary" round>主要</a-button>
+    <a-button type="success" round>成功</a-button>
+    <a-button type="warning" round>警告</a-button>
+    <a-button type="error" round>错误</a-button>
+  </div>
 </template>
 
 <style scoped>
