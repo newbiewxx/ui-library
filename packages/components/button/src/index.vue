@@ -1,6 +1,6 @@
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { ref, inject } from "vue";
+import { ref, inject, computed } from "vue";
 import { isFunction, isPromise } from "@ui-library/utils";
 
 defineOptions({
@@ -9,7 +9,7 @@ defineOptions({
 
 const ns = useNamespace("button");
 
-const { beforeChange = () => {} } = defineProps({
+const { beforeChange = () => {}, size, type  } = defineProps({
   type: {
     type: String,
     default: "default",
@@ -54,7 +54,14 @@ const handleClick = () => {
   });
 };
 
-const _isGroup = inject("isGroup", () => false);
+const _isGroup = inject("isGroup", false);
+const _groupSize = inject("groupSize", "default");
+const _groupType = inject("groupType", "default");
+
+// console.log(_groupSize, _groupType)
+
+const _size = size === "default" ? _groupSize : size;
+const _type = type === "default" ? _groupType : type;
 
 // console.log("组件的命名空间: => ", ns.namespace);
 // console.log("组件的块类名: => ", ns.b("wrapper"));
@@ -68,7 +75,7 @@ const _isGroup = inject("isGroup", () => false);
   <button
     :class="[
       ns.b(),
-      ns.m(type),
+      ns.m(_type),
       ns.is('round', round),
       ns.is('disabled', disabled),
       ns.is('text', text),
@@ -76,7 +83,7 @@ const _isGroup = inject("isGroup", () => false);
       ns.is('border', border),
       ns.is('dashed', dashed),
       ns.is('block', block),
-      ns.m('size', size),
+      ns.m('size', _size),
       ns.is('circle', circle),
       ns.is('loading', loading || _loading),
       ns.is('button-group', _isGroup)

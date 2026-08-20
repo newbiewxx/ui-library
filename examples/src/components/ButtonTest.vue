@@ -169,6 +169,24 @@ const beforeChangeHandler = () => {
     <a-button type="error">错误</a-button>
   </a-button-group>
 
+  <p>子组件继承父组件的属性</p>
+  <a-button-group size="large">
+    <a-button>默认</a-button>
+    <a-button type="primary">主要</a-button>
+    <a-button type="success">成功</a-button>
+    <a-button type="warning">警告</a-button>
+    <a-button type="error">错误</a-button>
+  </a-button-group>
+
+  <br />
+
+  <a-button-group type="primary">
+    <a-button>默认</a-button>
+    <a-button>主要</a-button>
+    <a-button>成功</a-button>
+    <a-button>警告</a-button>
+    <a-button>错误</a-button>
+  </a-button-group>
 </template>
 
 <style scoped>
