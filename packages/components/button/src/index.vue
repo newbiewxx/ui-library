@@ -6,6 +6,13 @@ defineOptions({
 
 const ns = useNamespace("button");
 
+defineProps({
+  type: {
+    type: String,
+    default: "default",
+  },
+});
+
 console.log("组件的命名空间: => ", ns.namespace);
 console.log("组件的块类名: => ", ns.b("wrapper"));
 console.log(ns.e("item"));
@@ -15,7 +22,7 @@ console.log(ns.is("active", true));
 </script>
 
 <template>
-  <button :class="[ns.b(), ns.m('primary')]">
+  <button :class="[ns.b(), ns.m(type)]">
     <!-- $slots 获取模板的所有插槽 -->
     <span v-if="$slots.default">
       <slot></slot>
