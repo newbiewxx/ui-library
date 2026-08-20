@@ -27,6 +27,7 @@ defineProps({
     type: String,
     default: "default",
   },
+  circle: Boolean,
 });
 
 console.log("组件的命名空间: => ", ns.namespace);
@@ -50,6 +51,7 @@ console.log(ns.is("active", true));
       ns.is('dashed', dashed),
       ns.is('block', block),
       ns.m('size', size),
+      ns.is('circle', circle),
     ]"
     :disabled="disabled"
   >

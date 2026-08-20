@@ -93,6 +93,15 @@
     <a-button type="warning" size="small">警告</a-button>
     <a-button type="error" size="small">错误</a-button>
   </div>
+
+  <p>圆形按钮</p>
+  <div class="row-gap">
+    <a-button circle>默认</a-button>
+    <a-button type="primary" size="default" circle>主要</a-button>
+    <a-button type="success" size="large" circle>成功</a-button>
+    <a-button type="warning" size="small" circle>警告</a-button>
+    <a-button type="error" size="small" circle>错误</a-button>
+  </div>
 </template>
 
 <style scoped>
