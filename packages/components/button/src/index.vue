@@ -32,6 +32,7 @@ defineProps({
   icon: String,
   // 普通按钮的后置图标
   suffixIcon: String,
+  loading: Boolean
 });
 
 // console.log("组件的命名空间: => ", ns.namespace);
@@ -56,13 +57,16 @@ defineProps({
       ns.is('block', block),
       ns.m('size', size),
       ns.is('circle', circle),
+      ns.is('loading', loading),
     ]"
     :disabled="disabled"
   >
+
     <!-- $slots 获取模板的所有插槽 -->
     <span v-if="$slots.default" :class="ns.e('inner')">
+      <span v-if="loading" class="iconfont icon-loading" :class='ns.is("loading-animation", loading)'"></span>
       <!-- 前置 icon 图标 -->
-      <span v-if="icon" class="iconfont" :class="icon"></span>
+      <span v-if="icon && !loading" class="iconfont" :class="icon"></span>
       <slot></slot>
       <!-- 后置 icon 图标 -->
       <span v-if="suffixIcon" class="iconfont" :class="suffixIcon"></span>
@@ -70,7 +74,7 @@ defineProps({
 
     <!-- 圆形按钮的 icon 图标 -->
     <!-- 圆形按钮的图标，必须保证 circle 属性为 true 且 传入了 icon 属性值 -->
-    <span v-if="circle && icon && !$slots.default" class="iconfont" :class="icon"></span>
+    <span v-if="circle && icon && !$slots.default && !loading" class="iconfont" :class="icon"></span>
   </button>
 </template>
 

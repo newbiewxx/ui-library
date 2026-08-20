@@ -1,5 +1,16 @@
 <script setup>
 // import { AButton } from "../../../packages";
+import { ref } from "vue";
+
+const loading = ref(false);
+
+const changeLoading = () => {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+  }, 2000);
+};
+
 </script>
 
 <template>
@@ -119,6 +130,15 @@
     <a-button type="warning" size="small" icon="icon-assessed-badge">警告</a-button>
     <a-button type="error" size="small" icon="icon-assessed-badge">错误</a-button>
     <a-button type="error" size="small" icon="icon-assessed-badge">错误</a-button>
+  </div>
+
+  <p>loading 加载按钮 --- {{ loading }}</p>
+  <div class="row-gap">
+    <a-button :loading="loading" @click="changeLoading">默认</a-button>
+    <a-button type="primary" size="default" icon="icon-assessed-badge" :loading="loading" @click="changeLoading">主要</a-button>
+    <a-button type="success" size="large" :loading="loading" @click="changeLoading">成功</a-button>
+    <a-button type="warning" size="small" :loading="loading" @click="changeLoading">警告</a-button>
+    <a-button type="error" size="small" :loading="loading" @click="changeLoading">错误</a-button>
   </div>
 </template>
 
