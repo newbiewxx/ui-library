@@ -216,6 +216,9 @@ importers:
       '@ui-library/utils':
         specifier: workspace:^
         version: link:packages/utils
+      vue:
+        specifier: ^3.5.41
+        version: 3.5.41
 
   examples:
     dependencies:
