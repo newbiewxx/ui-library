@@ -1,0 +1,10 @@
+packages:
+  # 组件库文档
+  - "docs"
+  # 测试项目
+  - "examples"
+  # 组件库包
+  - "packages/*"
+
+# 链接工作区包，不从远程仓库拉取
+linkWorkspacePackages: true
