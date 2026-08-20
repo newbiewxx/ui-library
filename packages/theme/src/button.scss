@@ -24,7 +24,6 @@
   &.is-round {
     border-radius: 100px;
   }
-
 }
 
 // 默认按钮的样式
@@ -37,6 +36,16 @@
     border-color: #97b4ff;
     color: #3069ff;
   }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover {
+      background-color: #fff;
+      border-color: #ebeef5;
+      color: #abb1bf;
+    }
+  }
 }
 
 // 主要按钮的样式
@@ -47,6 +56,16 @@
   &:hover {
     background-color: #6e96ff;
     border-color: #6e96ff;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover {
+      background-color: #98b4ff;
+      border-color: #98b4ff;
+      color: #fff;
+    }
   }
 }
 
@@ -59,6 +78,16 @@
     background-color: #5bdc9b;
     border-color: #5bdc9b;
   }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover {
+      background-color: #8ae6b8;
+      border-color: #8ae6b8;
+      color: #fff;
+    }
+  }
 }
 
 // 警告按钮的样式
@@ -70,6 +99,16 @@
     background-color: #ffc25f;
     border-color: #ffc25f;
   }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover {
+      background-color: #ffd48d;
+      border-color: #ffd48d;
+      color: #fff;
+    }
+  }
 }
 
 // 错误按钮的样式
@@ -80,5 +119,15 @@
   &:hover {
     background-color: #ff808c;
     border-color: #ff808c;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover {
+      background-color: #ffa5ad;
+      border-color: #ffa5ad;
+      color: #fff;
+    }
   }
 }
