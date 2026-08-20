@@ -15,7 +15,12 @@ console.log(ns.is("active", true));
 </script>
 
 <template>
-  <button :class="[ns.b(), ns.m('primary')]">测试按钮</button>
+  <button :class="[ns.b(), ns.m('primary')]">
+    <!-- $slots 获取模板的所有插槽 -->
+    <span v-if="$slots.default">
+      <slot></slot>
+    </span>
+  </button>
 </template>
 
 <style></style>

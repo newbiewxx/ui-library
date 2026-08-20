@@ -4,7 +4,7 @@
 
 <template>
   <p>你好</p>
-  <a-button></a-button>
+  <a-button>测试按钮</a-button>
 </template>
 
 <style>
