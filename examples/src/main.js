@@ -8,6 +8,8 @@ import "@ui-library/theme/src/index.scss";
 
 // 按需导入
 // import "@ui-library/theme/src/button.scss";
+// 按需导入主题包
+// import "@ui-library/components/button/src/style";
 
 const app = createApp(App);
 app.use(AUi);
