@@ -64,8 +64,8 @@ defineProps({
       <!-- 前置 icon 图标 -->
       <span v-if="icon" class="iconfont" :class="icon"></span>
       <slot></slot>
-      <!-- 前置 icon 图标 -->
-      <span v-if="icon" class="iconfont" :class="icon"></span>
+      <!-- 后置 icon 图标 -->
+      <span v-if="suffixIcon" class="iconfont" :class="suffixIcon"></span>
     </span>
 
     <!-- 圆形按钮的 icon 图标 -->
