@@ -1,4 +1,4 @@
-import AButton from "./components/button";
+import AButton from "@ui-library/components/button";
+import AButtonGroup from "@ui-library/components/button-group";
 
-export default [AButton];
-export { AButton };
+export default [AButton, AButtonGroup];

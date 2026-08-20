@@ -1,6 +1,6 @@
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { isFunction, isPromise } from "@ui-library/utils";
 
 defineOptions({
@@ -54,6 +54,8 @@ const handleClick = () => {
   });
 };
 
+const _isGroup = inject("isGroup", () => false);
+
 // console.log("组件的命名空间: => ", ns.namespace);
 // console.log("组件的块类名: => ", ns.b("wrapper"));
 // console.log(ns.e("item"));
@@ -77,6 +79,7 @@ const handleClick = () => {
       ns.m('size', size),
       ns.is('circle', circle),
       ns.is('loading', loading || _loading),
+      ns.is('button-group', _isGroup)
     ]"
     :disabled="disabled || loading || _loading"
     @click="handleClick"

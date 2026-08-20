@@ -110,6 +110,19 @@
     gap: 4px;
     align-items: center;
   }
+
+  &.is-button-group {
+    border-radius: 0;
+    &:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+    &:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+    & + .is-button-group {
+      margin-left: -1px;
+    }
+  }
 }
 
 // 默认按钮的样式
