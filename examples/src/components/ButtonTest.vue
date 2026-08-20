@@ -11,6 +11,14 @@ const changeLoading = () => {
   }, 2000);
 };
 
+const beforeChangeHandler = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      console.log("ok...");
+      resolve();
+    }, 2000);
+  });
+};
 </script>
 
 <template>
@@ -135,10 +143,21 @@ const changeLoading = () => {
   <p>loading 加载按钮 --- {{ loading }}</p>
   <div class="row-gap">
     <a-button :loading="loading" @click="changeLoading">默认</a-button>
-    <a-button type="primary" size="default" icon="icon-assessed-badge" :loading="loading" @click="changeLoading">主要</a-button>
+    <a-button type="primary" size="default" icon="icon-assessed-badge" :loading="loading" @click="changeLoading">
+      主要
+    </a-button>
     <a-button type="success" size="large" :loading="loading" @click="changeLoading">成功</a-button>
     <a-button type="warning" size="small" :loading="loading" @click="changeLoading">警告</a-button>
     <a-button type="error" size="small" :loading="loading" @click="changeLoading">错误</a-button>
+  </div>
+
+  <p>自动触发 loading 加载</p>
+  <div class="row-gap">
+    <a-button :before-change="beforeChangeHandler">默认</a-button>
+    <a-button type="primary" size="default" :before-change="beforeChangeHandler">主要</a-button>
+    <a-button type="success" size="large" :before-change="beforeChangeHandler">成功</a-button>
+    <a-button type="warning" size="small" :before-change="beforeChangeHandler">警告</a-button>
+    <a-button type="error" size="small" :before-change="beforeChangeHandler">错误</a-button>
   </div>
 </template>
 
