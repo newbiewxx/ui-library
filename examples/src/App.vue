@@ -1,7 +1,10 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import ButtonTest from "./components/ButtonTest.vue";
 </script>
 
 <template>
-  <HelloWorld />
+  <div>
+    <ButtonTest></ButtonTest>
+  </div>
 </template>
+

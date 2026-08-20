@@ -1,6 +1,6 @@
 <script setup>
 defineOptions({
-  name: "a-button",
+  name: "AButton",
 });
 
 
