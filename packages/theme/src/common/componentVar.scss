@@ -1,46 +1,38 @@
 @use "./function.scss" as fn;
 
-@function getButtonVar() {
+@function getButtonVar($type: "") {
   $button: (
-    border-color: (
-      // --a-border-color-default
+    border-color: ( // --a-border-color-default
       default: fn.getVarName("border-color", "default"),
-    ),
+      type: fn.getVarName(color, $type)),
 
-    bg-color: (
-      // --a-color-white
+    bg-color: ( // --a-color-white
       default: fn.getVarName("color", white),
+      type: fn.getVarName(color, $type)),
+
+    text-color: (default: fn.getVarName("text-color", "primary"),
+      type: fn.getVarName(color, "white")),
+
+    hover-border-color: (default: fn.getVarName(color, primary, light-5),
+      type: fn.getVarName(color, $type, light-3)),
+
+    hover-bg-color: (default: fn.getVarName(color, primary, light-9),
+      type: fn.getVarName(color, $type, light-3),
     ),
 
-    text-color: (
-      default: fn.getVarName("text-color", "primary"),
-    ),
-
-    hover-border-color: (
-      default: fn.getVarName(color, primary, light-5),
-    ),
-
-    hover-bg-color: (
-      default: fn.getVarName(color, primary, light-9),
-    ),
-
-    hover-text-color: (
-      default: fn.getVarName(color, "primary"),
-    ),
+    hover-text-color: (default: fn.getVarName(color, "primary"),
+      type: fn.getVarName(color, white)),
 
     // 按钮 disabled 时候的状态
-    disabled-border-color: (
-        default: fn.getVarName(border-color, disabled),
-      ),
+    disabled-border-color: (default: fn.getVarName(border-color, disabled),
+      type: fn.getVarName(color, $type, light-6)),
 
-    disabled-bg-color: (
-      default: fn.getVarName(color, white),
-    ),
+    disabled-bg-color: (default: fn.getVarName(color, white),
+      type: fn.getVarName(color, $type, light-6)),
 
-    disabled-text-color: (
-      default: fn.getVarName(text-color, disabled),
-    ),
+    disabled-text-color: (default: fn.getVarName(text-color, disabled),
+      type: fn.getVarName(color, white)),
   );
 
-  @return $button;
+@return $button;
 }
