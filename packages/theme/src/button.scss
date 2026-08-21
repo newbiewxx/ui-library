@@ -37,6 +37,19 @@
     color: var(#{fn.getVarName(button, hover-text-color)});
   }
 
+  // 按钮禁用和 loading 时候的样式
+  &.is-disabled,
+  &.is-loading {
+    cursor: not-allowed;
+
+    &,
+    &:hover {
+      background-color: var(#{fn.getVarName(button, disabled-bg-color)});
+      border-color: var(#{fn.getVarName(button, disabled-border-color)});
+      color: var(#{fn.getVarName(button, disabled-text-color)});
+    }
+  }
+
   &.is-round {
     border-radius: 100px;
   }
@@ -56,6 +69,7 @@
     border-color: transparent;
     text-decoration: underline 1px solid transparent;
     text-underline-offset: 3px;
+
     &:hover {
       background-color: transparent;
       border-color: transparent;
@@ -63,6 +77,7 @@
   }
 
   &.is-border {
+
     &,
     &:hover {
       background-color: transparent;
@@ -129,13 +144,16 @@
 
   &.is-button-group {
     border-radius: 0;
+
     &:first-child {
       border-radius: 6px 0 0 6px;
     }
+
     &:last-child {
       border-radius: 0 6px 6px 0;
     }
-    & + .is-button-group {
+
+    &+.is-button-group {
       margin-left: -1px;
     }
   }
@@ -152,19 +170,20 @@
   //   color: #3069ff;
   // }
 
-  &.is-disabled,
-  &.is-loading {
-    cursor: not-allowed;
-    &,
-    &:hover {
-      background-color: #fff;
-      border-color: #ebeef5;
-      color: #abb1bf;
-    }
-  }
+  // &.is-disabled,
+  // &.is-loading {
+  //   cursor: not-allowed;
+  //   &,
+  //   &:hover {
+  //     background-color: #fff;
+  //     border-color: #ebeef5;
+  //     color: #abb1bf;
+  //   }
+  // }
 
   &.is-text {
     color: #4d5059;
+
     &:hover {
       background-color: #f5f6fa;
       border-color: #f5f6fa;
@@ -173,6 +192,7 @@
 
   &.is-link {
     color: #4d5059;
+
     &:hover {
       text-decoration-color: #4d5059;
     }
@@ -191,6 +211,7 @@
   background-color: var(#{$var});
   border-color: var(#{$var});
   color: #fff;
+
   &:hover {
     background-color: #6e96ff;
     border-color: #6e96ff;
@@ -199,6 +220,7 @@
   &.is-disabled,
   &.is-loading {
     cursor: not-allowed;
+
     &,
     &:hover {
       background-color: #98b4ff;
@@ -209,6 +231,7 @@
 
   &.is-text {
     color: #3069ff;
+
     &:hover {
       background-color: #eaf0ff;
       border-color: #eaf0ff;
@@ -217,6 +240,7 @@
 
   &.is-link {
     color: #3069ff;
+
     &:hover {
       text-decoration-color: #3069ff;
     }
@@ -236,6 +260,7 @@
   background-color: var(#{$var});
   border-color: var(#{$var});
   color: #fff;
+
   &:hover {
     background-color: #5bdc9b;
     border-color: #5bdc9b;
@@ -244,6 +269,7 @@
   &.is-disabled,
   &.is-loading {
     cursor: not-allowed;
+
     &,
     &:hover {
       background-color: #8ae6b8;
@@ -254,6 +280,7 @@
 
   &.is-text {
     color: #14cd70;
+
     &:hover {
       background-color: #e8faf1;
       border-color: #e8faf1;
@@ -262,6 +289,7 @@
 
   &.is-link {
     color: #14cd70;
+
     &:hover {
       text-decoration-color: #14cd70;
     }
@@ -277,6 +305,7 @@
   background-color: #ffa81a;
   border-color: #ffa81a;
   color: #fff;
+
   &:hover {
     background-color: #ffc25f;
     border-color: #ffc25f;
@@ -285,6 +314,7 @@
   &.is-disabled,
   &.is-loading {
     cursor: not-allowed;
+
     &,
     &:hover {
       background-color: #ffd48d;
@@ -295,6 +325,7 @@
 
   &.is-text {
     color: #ffa81a;
+
     &:hover {
       background-color: #fff6e8;
       border-color: #fff6e8;
@@ -303,6 +334,7 @@
 
   &.is-link {
     color: #ffa81a;
+
     &:hover {
       text-decoration-color: #ffa81a;
     }
@@ -318,6 +350,7 @@
   background-color: #ff4a5b;
   border-color: #ff4a5b;
   color: #fff;
+
   &:hover {
     background-color: #ff808c;
     border-color: #ff808c;
@@ -326,6 +359,7 @@
   &.is-disabled,
   &.is-loading {
     cursor: not-allowed;
+
     &,
     &:hover {
       background-color: #ffa5ad;
@@ -336,6 +370,7 @@
 
   &.is-text {
     color: #ff4a5b;
+
     &:hover {
       background-color: #ffedef;
       border-color: #ffedef;
@@ -344,6 +379,7 @@
 
   &.is-link {
     color: #ff4a5b;
+
     &:hover {
       text-decoration-color: #ff4a5b;
     }
