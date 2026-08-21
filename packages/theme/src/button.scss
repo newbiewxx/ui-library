@@ -31,6 +31,12 @@
   user-select: none;
   vertical-align: middle;
 
+  &:hover {
+    background-color: var(#{fn.getVarName(button, hover-bg-color)});
+    border-color: var(#{fn.getVarName(button, hover-border-color)});
+    color: var(#{fn.getVarName(button, hover-text-color)});
+  }
+
   &.is-round {
     border-radius: 100px;
   }
@@ -140,11 +146,11 @@
   // background-color: #fff;
   // border-color: #e2e6f1;
   // color: #4d5059;
-  &:hover {
-    background-color: #eaf0ff;
-    border-color: #97b4ff;
-    color: #3069ff;
-  }
+  // &:hover {
+  //   background-color: #eaf0ff;
+  //   border-color: #97b4ff;
+  //   color: #3069ff;
+  // }
 
   &.is-disabled,
   &.is-loading {

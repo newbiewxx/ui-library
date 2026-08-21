@@ -8,12 +8,24 @@
     ),
 
     bg-color: (
-      // --a-bg-color-white
-      default: fn.getVarName("bg-color", white),
+      // --a-color-white
+      default: fn.getVarName("color", white),
     ),
 
     text-color: (
       default: fn.getVarName("text-color", "primary"),
+    ),
+
+    hover-border-color: (
+      default: fn.getVarName(color, primary, light-5),
+    ),
+
+    hover-bg-color: (
+      default: fn.getVarName(color, primary, light-9),
+    ),
+
+    hover-text-color: (
+      default: fn.getVarName(color, "primary"),
     ),
   );
 

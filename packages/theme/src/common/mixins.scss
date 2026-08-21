@@ -8,6 +8,7 @@
   @each $type in var.$types {
     // 生成 css 变量
     $color: map.get(var.$colors, $type, base);
+    // --a-color-white
     #{fn.getVarName("color", $type)}: #{$color};
   }
 }
