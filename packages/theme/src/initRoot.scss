@@ -1,6 +1,10 @@
 @use "./common/var.scss" as *;
+@use "./common/mixins.scss";
 
 :root {
-  --a-color-primary: #{$color-primary};
-  --a-color-success: #{$color-success};
+  // --a-color-primary: #{$color-primary};
+  // --a-color-success: #{$color-success};
+
+  // @include 可以理解成是调用函数
+  @include mixins.set-base-color;
 }

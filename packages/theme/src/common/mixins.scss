@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "./var.scss";
+
+// 用于给 :root 动态生成基础颜色的 css 变量
+// 可以理解成是在定义函数，不带参数时，可以不用加括号 set-base-color() 也是可以的
+@mixin set-base-color {
+  @each $type in var.$types {
+    // 生成 css 变量
+    $color: map.get(var.$colors, $type, base);
+    #{'--a-color-' + $type}: #{$color};
+  }
+}
