@@ -1,10 +1,13 @@
 @use "./common/function.scss" as fn;
+@use "./common/mixins.scss";
+@use "./common/componentVar.scss" as comVar;
 
 .a-button {
   // --a-button-border-color-default: #e2e6f1;
-  --a-button-border-color: var(#{fn.getVarName("border-color", "default")});
-  --a-button-bg-color: var(#{fn.getVarName("color", "white")});
-  --a-button-text-color: var(#{fn.getVarName("text-color", "primary")});
+  // --a-button-border-color: var(#{fn.getVarName("border-color", "default")});
+  // --a-button-bg-color: var(#{fn.getVarName("color", "white")});
+  // --a-button-text-color: var(#{fn.getVarName("text-color", "primary")});
+  @include mixins.set-component-var(button, comVar.getButtonVar());
 
   display: inline-flex;
   justify-content: center;
