@@ -8,4 +8,5 @@
   // @include 可以理解成是调用函数
   @include mixins.set-base-color;
   @include mixins.set-level-colors;
+  @include mixins.set-global-var;
 }

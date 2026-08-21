@@ -26,3 +26,17 @@
     }
   }
 }
+
+// 用于给 :root 动态生成组件库的全局通用的 css 变量
+@mixin set-global-var {
+  @each $key, $data in var.$global {
+    @each $type, $value in $data {
+      // --a-component-size-small: 24px;
+      // --a-text-color-primary: $value;
+      $name: fn.getVarName($key, $type);
+      $val: map.get(var.$global, $key, $type);
+
+      #{$name}: $val;
+    }
+  }
+}
