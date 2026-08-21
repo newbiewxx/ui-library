@@ -1,4 +1,5 @@
 // @use 引入其他 scss 文件
-@use "./common/var.scss";
+// @use "./common/var.scss";
+@use "./initRoot.scss";
 @use "./button.scss";
 @use "./loading.scss";

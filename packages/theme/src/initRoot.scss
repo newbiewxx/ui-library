@@ -1,0 +1,6 @@
+@use "./common/var.scss" as *;
+
+:root {
+  --a-color-primary: #{$color-primary};
+  --a-color-success: #{$color-success};
+}

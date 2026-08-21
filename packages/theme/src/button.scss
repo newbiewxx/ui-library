@@ -169,8 +169,8 @@
 
 // 主要按钮的样式
 .a-button--primary {
-  background-color: #3069ff;
-  border-color: #3069ff;
+  background-color: var(--a-color-primary);
+  border-color: var(--a-color-primary);
   color: #fff;
   &:hover {
     background-color: #6e96ff;
@@ -210,8 +210,8 @@
 
 // 成功按钮的样式
 .a-button--success {
-  background-color: #14cd70;
-  border-color: #14cd70;
+  background-color: var(--a-color-success);
+  border-color: var(--a-color-success);
   color: #fff;
   &:hover {
     background-color: #5bdc9b;
