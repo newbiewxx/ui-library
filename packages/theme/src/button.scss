@@ -1,3 +1,5 @@
+@use "./common/function.scss" as fn;
+
 .a-button {
   display: inline-flex;
   justify-content: center;
@@ -169,8 +171,11 @@
 
 // 主要按钮的样式
 .a-button--primary {
-  background-color: var(--a-color-primary);
-  border-color: var(--a-color-primary);
+  // --a-color-primary
+  $var: fn.getVarName(color, primary);
+
+  background-color: var(#{$var});
+  border-color: var(#{$var});
   color: #fff;
   &:hover {
     background-color: #6e96ff;
@@ -210,8 +215,12 @@
 
 // 成功按钮的样式
 .a-button--success {
-  background-color: var(--a-color-success);
-  border-color: var(--a-color-success);
+  // 引号可加可不加
+  // --a-color-success
+  $var: fn.getVarName("color", "success");
+
+  background-color: var(#{$var});
+  border-color: var(#{$var});
   color: #fff;
   &:hover {
     background-color: #5bdc9b;
