@@ -11,3 +11,18 @@
     #{fn.getVarName("color", $type)}: #{$color};
   }
 }
+
+// 用于给 :root 动态生成层次色的 css 变量
+// $mode 默认值为 light
+@mixin set-level-colors($mode: light) {
+  // --a-color-black-light-3
+  @each $type in var.$types-mix {
+    @for $i from 1 through 9 {
+      // --a-color-type-light-1
+      $name: fn.getVarName("color", $type, $mode, $i);
+      $color: map.get(var.$colors, $type, #{$mode}-#{$i});
+      // 变量名: 值；
+      #{$name}: #{$color};
+    }
+  }
+}

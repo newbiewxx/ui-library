@@ -1,4 +1,4 @@
-@use "./common/var.scss" as *;
+// @use "./common/var.scss" as *;
 @use "./common/mixins.scss";
 
 :root {
@@ -7,4 +7,5 @@
 
   // @include 可以理解成是调用函数
   @include mixins.set-base-color;
+  @include mixins.set-level-colors;
 }
