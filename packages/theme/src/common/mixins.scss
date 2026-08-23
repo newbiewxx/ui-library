@@ -85,7 +85,7 @@
   // .a-button--$modifier
   $m: $b + config.$modifier-connect + $modifier;
 
-  @if $value != "" {
+  @if $value !="" {
     // .a-button--$modifier_value
     $m: $m + config.$modifier-value-connect + $value;
   }
@@ -97,5 +97,18 @@
       // 占位符
       @content;
     }
+  }
+}
+
+// 生成状态类型
+@mixin s($attrs, $and: true) {
+  $selector: "";
+
+  @each $attr in $attrs {
+    $selector: $selector + if(sass($and): '&.'; else: '.') + config.$is-prefix + $attr + ",";
+  }
+
+  #{$selector} {
+    @content;
   }
 }

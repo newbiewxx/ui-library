@@ -40,8 +40,7 @@
   }
 
   // 按钮禁用和 loading 时候的样式
-  &.is-disabled,
-  &.is-loading {
+  @include mixins.s(disabled, loading) {
     cursor: not-allowed;
 
     &,
@@ -52,12 +51,12 @@
     }
   }
 
-  &.is-round {
+  @include mixins.s(round) {
     border-radius: 100px;
   }
 
   // 文字按钮的类名
-  &.is-text {
+  @include mixins.s(text) {
     // background-color: transparent;
     // border-color: transparent;
 
@@ -71,8 +70,7 @@
       border-color: var(#{fn.getVarName(button, hover-is-text-bg-color)});
     }
 
-    &.is-disabled,
-    &.is-loading {
+    @include mixins.s(disabled, loading) {
       color: var(#{fn.getVarName(button, disabled-is-text-color)});
       background-color: var(#{fn.getVarName(button, disabled-is-text-bg-color)});
       border-color: var(#{fn.getVarName(button, disabled-is-text-bg-color)});
@@ -80,7 +78,7 @@
   }
 
   // 链接按钮的类名
-  &.is-link {
+  @include mixins.s(link) {
     padding: 0;
     min-width: auto;
     height: auto;
@@ -95,7 +93,7 @@
     }
   }
 
-  &.is-link {
+  @include mixins.s(link) {
     color: var(#{fn.getVarName(button, is-link-color)});
 
     &:hover {
@@ -103,14 +101,13 @@
       text-decoration-color: var(#{fn.getVarName(button, hover-is-link-color)});
     }
 
-    &.is-disabled,
-    &.is-loading {
+    @include mixins.s(disabled, loading) {
       color: var(#{fn.getVarName(button, disabled-is-link-color)});
       text-decoration-color: transparent;
     }
   }
 
-  &.is-border {
+  @include mixins.s(border) {
 
     color: var(#{fn.getVarName(button, is-border-text-color)});
     border-color: var(#{fn.getVarName(button, is-border-color)});
@@ -122,18 +119,17 @@
       background-color: transparent;
     }
 
-    &.is-disabled,
-    &.is-loading {
+    @include mixins.s(disabled, loading) {
       color: var(#{fn.getVarName(button, disabled-is-border-text-color)});
       border-color: var(#{fn.getVarName(button, disabled-is-border-color)});
     }
   }
 
-  &.is-dashed {
+  @include mixins.s(dashed) {
     border-style: dashed;
   }
 
-  &.is-block {
+  @include mixins.s(block) {
     display: block;
     width: 100%;
   }
@@ -153,7 +149,7 @@
     #{fn.getVarName(button, font-size)}: var(#{fn.getVarName("font-size", "large")});
   }
 
-  &.is-circle {
+  @include mixins.s(circle) {
     padding: 0;
     min-width: auto;
     width: var(#{fn.getVarName("button", "size")});
@@ -171,7 +167,7 @@
     align-items: center;
   }
 
-  &.is-button-group {
+  @include mixins.s(button-group) {
     border-radius: 0;
 
     &:first-child {
