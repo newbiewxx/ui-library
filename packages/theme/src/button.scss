@@ -17,7 +17,8 @@
   min-width: 80px;
   background-color: var(--a-button-bg-color);
   border: 1px solid var(--a-button-border-color);
-  font-size: 14px;
+  // font-size: 14px;
+  font-size: #{fn.getVarName(button, font-size)};
   color: var(--a-button-text-color);
 
   padding: 0 16px;
@@ -98,46 +99,52 @@
     // height: 24px;
     #{fn.getVarName(button, size)}: #{fn.getVarName("component-size", "small")};
     padding: 0 10px;
-    font-size: 12px;
+    // font-size: 12px;
+    #{fn.getVarName(button, font-size)}: #{fn.getVarName("font-size", "small")};
 
     // &.is-circle {
     //   width: 24px;
     // }
 
-    .iconfont {
-      font-size: 12px;
-    }
+    // .iconfont {
+    //   font-size: 12px;
+    // }
   }
 
   &.a-button--size_large {
     // height: 40px;
     #{fn.getVarName(button, size)}: #{fn.getVarName("component-size", "large")};
-    font-size: 16px;
+    // font-size: 16px;
+    #{fn.getVarName(button, font-size)}: #{fn.getVarName("font-size", "large")};
 
     // &.is-circle {
     //   width: 40px;
     // }
 
-    .iconfont {
-      font-size: 16px;
-    }
+    // .iconfont {
+    //   font-size: 16px;
+    // }
   }
 
-  &.a-button--size_default {
-    &.is-circle {
-      width: 32px;
-    }
+  // &.a-button--size_default {
+  //   &.is-circle {
+  //     width: 32px;
+  //   }
 
-    .iconfont {
-      font-size: 14px;
-    }
-  }
+  //   .iconfont {
+  //     font-size: 14px;
+  //   }
+  // }
 
   &.is-circle {
     padding: 0;
     min-width: auto;
     width: var(#{fn.getVarName("button", "size")});
     border-radius: 50%;
+  }
+
+  .iconfont {
+    font-size: var(#{fn.getVarName("button", "font-size")});
   }
 
   &__inner {
