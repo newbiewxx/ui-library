@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "./var.scss";
 @use "./function.scss" as fn;
+@use "./config.scss";
 
 // 用于给 :root 动态生成基础颜色的 css 变量
 // 可以理解成是在定义函数，不带参数时，可以不用加括号 set-base-color() 也是可以的
@@ -16,6 +17,7 @@
 // 用于给 :root 动态生成层次色的 css 变量
 // $mode 默认值为 light
 @mixin set-level-colors($mode: light) {
+
   // --a-color-black-light-3
   @each $type in var.$types-mix {
     @for $i from 1 through 9 {
@@ -49,5 +51,15 @@
     $name: fn.getVarName($com-type, $key);
     $value: var(#{map.get($var, $key, $var-key)});
     #{$name}: #{$value};
+  }
+}
+
+// 生成 block 块类名
+@mixin b($block) {
+  $b: "." + config.$namespace + config.$connect + $block;
+
+  #{$b} {
+    // 占位符
+    @content;
   }
 }
