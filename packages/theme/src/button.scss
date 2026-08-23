@@ -97,44 +97,18 @@
 
   &.a-button--size_small {
     // height: 24px;
-    #{fn.getVarName(button, size)}: #{fn.getVarName("component-size", "small")};
+    #{fn.getVarName(button, size)}: var(#{fn.getVarName(component-size, small)});
     padding: 0 10px;
     // font-size: 12px;
     #{fn.getVarName(button, font-size)}: #{fn.getVarName("font-size", "small")};
-
-    // &.is-circle {
-    //   width: 24px;
-    // }
-
-    // .iconfont {
-    //   font-size: 12px;
-    // }
   }
 
   &.a-button--size_large {
     // height: 40px;
-    #{fn.getVarName(button, size)}: #{fn.getVarName("component-size", "large")};
+    #{fn.getVarName(button, size)}: var(#{fn.getVarName("component-size", "large")});
     // font-size: 16px;
     #{fn.getVarName(button, font-size)}: #{fn.getVarName("font-size", "large")};
-
-    // &.is-circle {
-    //   width: 40px;
-    // }
-
-    // .iconfont {
-    //   font-size: 16px;
-    // }
   }
-
-  // &.a-button--size_default {
-  //   &.is-circle {
-  //     width: 32px;
-  //   }
-
-  //   .iconfont {
-  //     font-size: 14px;
-  //   }
-  // }
 
   &.is-circle {
     padding: 0;
