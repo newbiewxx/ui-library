@@ -18,7 +18,7 @@
   background-color: var(--a-button-bg-color);
   border: 1px solid var(--a-button-border-color);
   // font-size: 14px;
-  font-size: #{fn.getVarName(button, font-size)};
+  font-size: var(#{fn.getVarName(button, font-size)});
   color: var(--a-button-text-color);
 
   padding: 0 16px;
@@ -143,14 +143,14 @@
     #{fn.getVarName(button, size)}: var(#{fn.getVarName(component-size, small)});
     padding: 0 10px;
     // font-size: 12px;
-    #{fn.getVarName(button, font-size)}: #{fn.getVarName("font-size", "small")};
+    #{fn.getVarName(button, font-size)}: var(#{fn.getVarName("font-size", "small")});
   }
 
   &.a-button--size_large {
     // height: 40px;
     #{fn.getVarName(button, size)}: var(#{fn.getVarName("component-size", "large")});
     // font-size: 16px;
-    #{fn.getVarName(button, font-size)}: #{fn.getVarName("font-size", "large")};
+    #{fn.getVarName(button, font-size)}: var(#{fn.getVarName("font-size", "large")});
   }
 
   &.is-circle {
@@ -164,7 +164,8 @@
     font-size: var(#{fn.getVarName("button", "font-size")});
   }
 
-  &__inner {
+  // .a-button__inner
+  @include mixins.e(inner) {
     display: inline-flex;
     gap: 4px;
     align-items: center;
