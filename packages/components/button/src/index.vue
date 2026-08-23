@@ -1,6 +1,6 @@
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { ref, inject, computed } from "vue";
+import { ref, inject } from "vue";
 import { isFunction, isPromise } from "@ui-library/utils";
 
 defineOptions({

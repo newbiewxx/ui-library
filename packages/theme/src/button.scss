@@ -138,7 +138,7 @@
     width: 100%;
   }
 
-  &.a-button--size_small {
+  @include mixins.m(size, small) {
     // height: 24px;
     #{fn.getVarName(button, size)}: var(#{fn.getVarName(component-size, small)});
     padding: 0 10px;
@@ -146,7 +146,7 @@
     #{fn.getVarName(button, font-size)}: var(#{fn.getVarName("font-size", "small")});
   }
 
-  &.a-button--size_large {
+  @include mixins.m(size, large) {
     // height: 40px;
     #{fn.getVarName(button, size)}: var(#{fn.getVarName("component-size", "large")});
     // font-size: 16px;
