@@ -13,7 +13,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 32px;
+  height: var(#{fn.getVarName(button, size)});
   min-width: 80px;
   background-color: var(--a-button-bg-color);
   border: 1px solid var(--a-button-border-color);
@@ -95,13 +95,14 @@
   }
 
   &.a-button--size_small {
-    height: 24px;
+    // height: 24px;
+    #{fn.getVarName(button, size)}: #{fn.getVarName("component-size", "small")};
     padding: 0 10px;
     font-size: 12px;
 
-    &.is-circle {
-      width: 24px;
-    }
+    // &.is-circle {
+    //   width: 24px;
+    // }
 
     .iconfont {
       font-size: 12px;
@@ -109,12 +110,13 @@
   }
 
   &.a-button--size_large {
-    height: 40px;
+    // height: 40px;
+    #{fn.getVarName(button, size)}: #{fn.getVarName("component-size", "large")};
     font-size: 16px;
 
-    &.is-circle {
-      width: 40px;
-    }
+    // &.is-circle {
+    //   width: 40px;
+    // }
 
     .iconfont {
       font-size: 16px;
@@ -134,6 +136,7 @@
   &.is-circle {
     padding: 0;
     min-width: auto;
+    width: var(#{fn.getVarName("button", "size")});
     border-radius: 50%;
   }
 

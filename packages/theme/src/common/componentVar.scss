@@ -32,6 +32,8 @@
 
     disabled-text-color: (default: fn.getVarName(text-color, disabled),
       type: fn.getVarName(color, white)),
+
+    size: (default: fn.getVarName(component-size, default)),
   );
 
 @return $button;
