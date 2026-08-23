@@ -13,13 +13,17 @@ const changeSize = () => {
 </script>
 
 <template>
-  <p>图标组件</p>
+  <p>图标组件 --- {{ color }} --- {{ size }}</p>
   <a-button-group>
     <a-button type="primary" @click="changeColor">change color</a-button>
     <a-button type="success" @click="changeSize">change size</a-button>
   </a-button-group>
   <div class="row-gap">
     <a-icon :color :size>
+      <span class="iconfont icon-business-icon-buyers-club-fill"></span>
+    </a-icon>
+
+    <a-icon :color size="40px">
       <span class="iconfont icon-business-icon-buyers-club-fill"></span>
     </a-icon>
   </div>
