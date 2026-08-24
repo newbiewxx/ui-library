@@ -41,6 +41,11 @@
     #{fn.getVarName(input, font-size)}: var(#{fn.getVarName(font-size, large)});
   }
 
+  // round 状态
+  @include mixins.s(round) {
+    #{fn.getVarName(input, round)}: var(#{fn.getVarName(component-round, round)});
+  }
+
   @include mixins.e(wrapper) {
     display: inline-flex;
     align-items: center;

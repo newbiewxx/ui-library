@@ -17,6 +17,7 @@ defineProps({
     type: String,
     default: "default",
   },
+  round: Boolean,
 });
 
 const ns = useNamespace("input");
@@ -31,7 +32,9 @@ const handleBlur = () => {
 </script>
 
 <template>
-  <div :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled), ns.m('size', size)]">
+  <div
+    :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled), ns.m('size', size), ns.is('round', round)]"
+  >
     <!-- 前置区域 -->
     <div :class="[ns.e('wrapper')]">
       <!-- 前缀区域 -->
