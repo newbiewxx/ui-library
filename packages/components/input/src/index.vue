@@ -10,9 +10,13 @@ defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
-    default: "请输入内容"
+    default: "请输入内容",
   },
-  maxLength: [String, Number]
+  maxLength: [String, Number],
+  size: {
+    type: String,
+    default: "default",
+  },
 });
 
 const ns = useNamespace("input");
@@ -27,7 +31,7 @@ const handleBlur = () => {
 </script>
 
 <template>
-  <div :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled)]">
+  <div :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled), ns.m('size', size)]">
     <!-- 前置区域 -->
     <div :class="[ns.e('wrapper')]">
       <!-- 前缀区域 -->

@@ -15,6 +15,19 @@
   <div class="col-gap">
     <a-input placeholder="请输入11位手机号" :max-length="11"></a-input>
   </div>
+
+  <p>文本框 - size</p>
+  <div class="col-gap">
+    <a-input size="small"></a-input>
+    <a-input></a-input>
+    <a-input size="large"></a-input>
+  </div>
 </template>
 
-<style></style>
+<style>
+.col-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+</style>
