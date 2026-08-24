@@ -6,6 +6,10 @@ defineOptions({
   name: "AInput",
 });
 
+defineProps({
+  disabled: Boolean,
+});
+
 const ns = useNamespace("input");
 
 const _isFocus = ref(false);
@@ -18,11 +22,18 @@ const handleBlur = () => {
 </script>
 
 <template>
-  <div :class="[ns.b(), ns.is('focus', _isFocus)]">
+  <div :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled)]">
     <!-- 前置区域 -->
     <div :class="[ns.e('wrapper')]">
       <!-- 前缀区域 -->
-      <input type="text" placeholder="请输入内容" :class="[ns.e('inner')]" @focus="handleFocus" @blur="handleBlur" />
+      <input
+        type="text"
+        placeholder="请输入内容"
+        :class="[ns.e('inner')]"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        :disabled
+      />
       <!-- 后缀区域 -->
     </div>
     <!-- 后置区域 -->

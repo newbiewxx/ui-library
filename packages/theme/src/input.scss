@@ -18,6 +18,13 @@
     #{fn.getVarName(input, border-color)}: var(#{fn.getVarName(color, primary)});
   }
 
+  // disabled 状态
+  @include mixins.s(disabled) {
+    #{fn.getVarName(input, text-color)}: var(#{fn.getVarName(text-color, disabled)});
+    #{fn.getVarName(input, border-color)}: var(#{fn.getVarName(border-color, disabled)});
+    #{fn.getVarName(input, bg-color)}: var(#{fn.getVarName(color, gray, light-9)});
+  }
+
   @include mixins.e(wrapper) {
     display: inline-flex;
     align-items: center;
