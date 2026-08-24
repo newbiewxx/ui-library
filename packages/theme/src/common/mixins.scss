@@ -2,6 +2,7 @@
 @use "./var.scss";
 @use "./function.scss" as fn;
 @use "./config.scss";
+@use "sass:string";
 
 // 用于给 :root 动态生成基础颜色的 css 变量
 // 可以理解成是在定义函数，不带参数时，可以不用加括号 set-base-color() 也是可以的
@@ -49,8 +50,27 @@
   @each $key, $data in $var {
     // --a-button-bg-color
     $name: fn.getVarName($com-type, $key);
-    $value: var(#{map.get($var, $key, $var-key)});
-    #{$name}: #{$value};
+    // $value: var(#{map.get($var, $key, $var-key)});
+
+    // 并不确定这个值是否是 --a 开头的字符串还是纯粹的值
+    $map-val: map.get($var, $key, $var-key);
+
+    @if $map-val {
+      // 进一步判断 $map-val 是否以 --a 开头
+      $index: string.index($map-val, '--' + config.$namespace);
+
+      @if $index {
+        $value: var(#{$map-val});
+        #{$name}: #{$value};
+      }
+
+      @else {
+        $value: #{$map-val};
+        #{$name}: #{$value};
+      }
+    }
+
+    // #{$name}: #{$value};
   }
 }
 

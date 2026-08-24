@@ -89,7 +89,9 @@
     border-color: (default: fn.getVarName(border-color, default)),
     bg-color: (default: fn.getVarName(color, white)),
     size: (default: fn.getVarName(component-size, default)),
-    font-size: (default: fn.getVarName(font-size, default))
+    font-size: (default: fn.getVarName(font-size, default)),
+    round: (default: fn.getVarName(component-round, default)),
+    padding: (default: "10px")
   );
 
 @return $input;

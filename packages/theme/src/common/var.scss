@@ -5,36 +5,46 @@
 // : 用来给变量赋值
 // : 后面的 () 表示这个变量的初始值是空的
 // !default 表示变量有初始值，但是允许被用于重新改写！
-$colors: () !default;
-$types-mix: (black, primary, success, warning, error);
-$types: (black, white, primary, success, warning, error);
-$types-base: (primary, success, warning, error);
+$colors: (
+  ) !default;
+$types-mix: (
+  black,
+  primary,
+  success,
+  warning,
+  error
+);
+$types: (
+  black,
+  white,
+  primary,
+  success,
+  warning,
+  error
+);
+$types-base: (
+  primary,
+  success,
+  warning,
+  error
+);
 
 // 在进行 map.deep-merge(参数1, 参数2) 的时候，
 // 永远都是后来者居上，参数2 中的属性会覆盖掉 参数1 中相同属性的值
-$colors: map.deep-merge(
-  (
-    black: (
-      base: #000000,
+$colors: map.deep-merge((black: (base: #000000,
+      ),
+      white: (base: #ffffff,
+      ),
+      primary: (base: #3069ff,
+      ),
+      success: (base: #14cd70,
+      ),
+      warning: (base: #ffa81a,
+      ),
+      error: (base: #ff4a5b,
+      ),
     ),
-    white: (
-      base: #ffffff,
-    ),
-    primary: (
-      base: #3069ff,
-    ),
-    success: (
-      base: #14cd70,
-    ),
-    warning: (
-      base: #ffa81a,
-    ),
-    error: (
-      base: #ff4a5b,
-    ),
-  ),
-  $colors
-);
+    $colors);
 
 // 从 $colors 中取出基础的颜色值
 $color-white: map.get($colors, white, base);
@@ -47,71 +57,76 @@ $color-error: map.get($colors, error, base);
 // 生成主题色对应的层次色
 // 自定义混入
 @mixin set-color-level($type, $number, $mix-color: #fff, $mode: light) {
-  $colors: map.deep-merge(
-    (
-      $type: (
+  $colors: map.deep-merge(($type: (
         #{$mode}-#{$number}: color.mix($mix-color, map.get($colors, $type, base), $number * 10 * 1%),
       ),
     ),
-    $colors
-  ) !global;
+    $colors ) !global;
 }
 
 // 外层循环使用 @each
 // @each $item in 数组 {}
 @each $type in $types-mix {
+
   // 内层循环使用 @for
   // @for 变量 from 初始值 through 终值 {}
   @for $i from 1 through 9 {
     // 通过 @include 调用自定义的 mixin 函数
-    @include set-color-level($type, $i);
-  }
+    @include set-color-level($type, $i
+  );
+}
 }
 
 // 文字的颜色
-$text-color: () !default;
-$text-color: map.deep-merge(
-  (
-    // 文字的主要颜色
-    primary: #4d5059,
-    secondary: #7c808c,
-    disabled: #abb1bf,
-    placeholder: #c9cdd9
-  ),
-  $text-color
+$text-color: (
+  ) !default;
+$text-color: map.deep-merge(( // 文字的主要颜色
+      primary: #4d5059,
+      secondary: #7c808c,
+      disabled: #abb1bf,
+      placeholder: #c9cdd9),
+    $text-color
 );
 
 // 边框的颜色
-$border-color: () !default;
-$border-color: map.deep-merge(
-  (
-    default: #e2e6f1,
-    disabled: #ebeef5,
-    hover: #c9cdd9,
-  ),
-  $border-color
+$border-color: (
+  ) !default;
+$border-color: map.deep-merge((default: #e2e6f1,
+      disabled: #ebeef5,
+      hover: #c9cdd9,
+    ),
+    $border-color
 );
 
 // 文字的大小
-$font-size: () !default;
-$font-size: map.deep-merge(
-  (
-    small: 12px,
-    default: 14px,
-    large: 16px,
-  ),
-  $font-size
+$font-size: (
+  ) !default;
+$font-size: map.deep-merge((small: 12px,
+      default: 14px,
+      large: 16px,
+    ),
+    $font-size
 );
 
 // 组件的大小
-$component-size: () !default;
-$component-size: map.deep-merge(
-  (
-    small: 24px,
-    default: 32px,
-    large: 40px,
-  ),
-  $component-size
+$component-size: (
+  ) !default;
+$component-size: map.deep-merge((small: 24px,
+      default: 32px,
+      large: 40px,
+    ),
+    $component-size
+);
+
+// 组件的圆角
+$component-round: (
+  ) !default;
+$component-round: map.deep-merge((small: 4px,
+      default: 6px,
+      large: 8px,
+      // 绝对圆形的弧度
+      round: 100px),
+    $component-round
 );
 
 // 全局通用的样式
@@ -120,4 +135,5 @@ $global: (
   "border-color": $border-color,
   "font-size": $font-size,
   "component-size": $component-size,
+  "component-round": $component-round
 );
