@@ -213,6 +213,9 @@ importers:
       '@ui-library/hooks':
         specifier: workspace:^
         version: link:packages/hooks
+      '@ui-library/icons':
+        specifier: workspace:^
+        version: link:packages/icons
       '@ui-library/theme':
         specifier: workspace:^
         version: link:packages/theme
@@ -242,6 +245,8 @@ importers:
   packages/components: {}
 
   packages/hooks: {}
+
+  packages/icons: {}
 
   packages/theme: {}
 
