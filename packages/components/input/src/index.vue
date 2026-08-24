@@ -1,19 +1,28 @@
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
+import { ref } from "vue";
 
 defineOptions({
   name: "AInput",
 });
 
 const ns = useNamespace("input");
+
+const _isFocus = ref(false);
+const handleFocus = () => {
+  _isFocus.value = true;
+};
+const handleBlur = () => {
+  _isFocus.value = false;
+};
 </script>
 
 <template>
-  <div :class="[ns.b()]">
+  <div :class="[ns.b(), ns.is('focus', _isFocus)]">
     <!-- 前置区域 -->
     <div :class="[ns.e('wrapper')]">
       <!-- 前缀区域 -->
-      <input type="text" placeholder="请输入内容" :class="[ns.e('inner')]" />
+      <input type="text" placeholder="请输入内容" :class="[ns.e('inner')]" @focus="handleFocus" @blur="handleBlur" />
       <!-- 后缀区域 -->
     </div>
     <!-- 后置区域 -->
