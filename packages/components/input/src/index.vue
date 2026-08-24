@@ -8,6 +8,11 @@ defineOptions({
 
 defineProps({
   disabled: Boolean,
+  placeholder: {
+    type: String,
+    default: "请输入内容"
+  },
+  maxLength: [String, Number]
 });
 
 const ns = useNamespace("input");
@@ -28,10 +33,11 @@ const handleBlur = () => {
       <!-- 前缀区域 -->
       <input
         type="text"
-        placeholder="请输入内容"
+        :placeholder
         :class="[ns.e('inner')]"
         @focus="handleFocus"
         @blur="handleBlur"
+        :maxlength="maxLength"
         :disabled
       />
       <!-- 后缀区域 -->
