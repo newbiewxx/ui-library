@@ -62,7 +62,8 @@
     // 文本框
     @include mixins.e(inner) {
       height: 100%;
-      width: 100%;
+      // width: 100%;
+      flex: 1;
       border: none;
       outline: none;
       padding: 0;
@@ -73,6 +74,23 @@
       &::placeholder {
         color: var(#{fn.getVarName(text-color, placeholder)});
       }
+    }
+  }
+
+  // 前缀、后缀图标
+  @include mixins.e(fix-wrapper) {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(#{fn.getVarName(text-color, placeholder)});
+    font-size: var(#{fn.getVarName(input, font-size)});
+
+    @include mixins.e(prefix) {
+      padding-right: 5px;
+    }
+
+    @include mixins.e(suffix) {
+      padding-left: 5px;
     }
   }
 

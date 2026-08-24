@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import { PlusCircle, Calendar } from "@ui-library/icons";
+
+</script>
 
 <template>
   <p>文本框</p>
@@ -26,6 +29,12 @@
   <p>文本框 - round</p>
   <div class="col-gap">
     <a-input round size="large"></a-input>
+  </div>
+
+  <p>文本框 - 前缀、后缀 icon 图标</p>
+  <div class="col-gap">
+    <a-input prefix-icon="icon-search" :suffix-icon="PlusCircle"></a-input>
+    <a-input prefix-icon="icon-cart-empty" :suffix-icon="Calendar"></a-input>
   </div>
 </template>
 

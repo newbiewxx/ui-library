@@ -1,12 +1,13 @@
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { AIcon } from "@ui-library/components";
 
 defineOptions({
   name: "AInput",
 });
 
-defineProps({
+const { prefixIcon, suffixIcon } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -18,6 +19,8 @@ defineProps({
     default: "default",
   },
   round: Boolean,
+  prefixIcon: [String, Object],
+  suffixIcon: [String, Object],
 });
 
 const ns = useNamespace("input");
@@ -29,6 +32,9 @@ const handleFocus = () => {
 const handleBlur = () => {
   _isFocus.value = false;
 };
+
+const _isPrefix = computed(() => prefixIcon);
+const _isSuffix = computed(() => suffixIcon);
 </script>
 
 <template>
@@ -38,6 +44,9 @@ const handleBlur = () => {
     <!-- 前置区域 -->
     <div :class="[ns.e('wrapper')]">
       <!-- 前缀区域 -->
+      <div v-if="_isPrefix" :class="[ns.e('fix-wrapper'), ns.e('prefix')]">
+        <a-icon :icon="prefixIcon"></a-icon>
+      </div>
       <input
         type="text"
         :placeholder
@@ -48,6 +57,9 @@ const handleBlur = () => {
         :disabled
       />
       <!-- 后缀区域 -->
+      <div v-if="_isSuffix" :class="[ns.e('fix-wrapper'), ns.e('suffix')]">
+        <a-icon :icon="suffixIcon"></a-icon>
+      </div>
     </div>
     <!-- 后置区域 -->
   </div>
