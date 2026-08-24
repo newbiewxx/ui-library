@@ -1,6 +1,9 @@
 @use "./common/mixins.scss";
+@use "./common/componentVar.scss" as comVar;
 
 @include mixins.b(input) {
+  @include mixins.set-component-var(input, comVar.getInputVar());
+
   display: inline-flex;
   align-items: center;
   width: 100%;
