@@ -2,12 +2,13 @@
 import { useNamespace } from "@ui-library/hooks";
 import { ref, computed, useSlots, provide } from "vue";
 import { AIcon } from "@ui-library/components";
+import { EyeOff, Eye } from "@ui-library/icons";
 
 defineOptions({
   name: "AInput",
 });
 
-const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size } = defineProps({
+const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -26,6 +27,7 @@ const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size } = define
   // 前置和周知的文本内容
   prepend: String,
   append: String,
+  password: Boolean,
 });
 
 const ns = useNamespace("input");
@@ -39,7 +41,7 @@ const handleBlur = () => {
 };
 
 const _isPrefix = computed(() => prefixIcon || prefix);
-const _isSuffix = computed(() => suffixIcon || suffix);
+const _isSuffix = computed(() => suffixIcon || suffix || password);
 
 // const slots = useSlots(); // 使用 useSlots 获取插槽, 本次我不需要使用，可以直接在模板内使用 $slots 获取插槽对象
 const slots = useSlots();
@@ -50,6 +52,16 @@ const _isAppend = computed(() => slots.append || append);
 // 注入 size
 // 内部的 button 组件会通过 provide 获取到 groupSize 值，并使用
 provide("groupSize", size);
+
+const _pwdVisible = ref(false);
+
+const _inputType = computed(() => {
+  return password ? (_pwdVisible.value ? "text" : "password") : "text";
+});
+
+const _pwdIcon = computed(() => {
+  return _pwdVisible.value ? Eye : EyeOff;
+});
 </script>
 
 <template>
@@ -68,7 +80,7 @@ provide("groupSize", size);
         <span v-if="prefix">{{ prefix }}</span>
       </div>
       <input
-        type="text"
+        :type="_inputType"
         :placeholder
         :class="[ns.e('inner')]"
         @focus="handleFocus"
@@ -80,6 +92,8 @@ provide("groupSize", size);
       <div v-if="_isSuffix" :class="[ns.e('fix-wrapper'), ns.e('suffix')]">
         <a-icon v-if="suffixIcon" :icon="suffixIcon"></a-icon>
         <span v-if="suffix">{{ suffix }}</span>
+        <!-- 密码框 -->
+        <a-icon :icon="_pwdIcon" v-if="password" @click="_pwdVisible = !_pwdVisible"></a-icon>
       </div>
     </div>
     <!-- 后置区域 -->
