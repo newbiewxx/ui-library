@@ -30,6 +30,8 @@ const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password 
   password: Boolean,
 });
 
+const emit = defineEmits(["input"]);
+
 const ns = useNamespace("input");
 
 const _isFocus = ref(false);
@@ -62,6 +64,14 @@ const _inputType = computed(() => {
 const _pwdIcon = computed(() => {
   return _pwdVisible.value ? Eye : EyeOff;
 });
+
+const modelValue = defineModel({ default: "" });
+
+const inputHandler = e => {
+  modelValue.value = e.currentTarget.value;
+  // 触发自定义的 input 事件
+  emit("input", e.currentTarget.value, e);
+};
 </script>
 
 <template>
@@ -87,6 +97,8 @@ const _pwdIcon = computed(() => {
         @blur="handleBlur"
         :maxlength="maxLength"
         :disabled
+        :value="modelValue"
+        @input="inputHandler"
       />
       <!-- 后缀区域 -->
       <div v-if="_isSuffix" :class="[ns.e('fix-wrapper'), ns.e('suffix')]">

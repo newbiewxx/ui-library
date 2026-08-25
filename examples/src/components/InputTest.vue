@@ -1,5 +1,13 @@
 <script setup>
 import { PlusCircle, Calendar } from "@ui-library/icons";
+import { ref } from "vue";
+
+const info = ref("");
+
+const inputFn = (value, e) => {
+  console.log(value);
+  console.log(e);
+};
 </script>
 
 <template>
@@ -90,6 +98,12 @@ import { PlusCircle, Calendar } from "@ui-library/icons";
   <p>文本框 - password</p>
   <div class="col-gap">
     <a-input password></a-input>
+  </div>
+
+  <p>文本框 - 数据双向绑定</p>
+  <p>{{ info }}</p>
+  <div class="col-gap">
+    <a-input v-model="info" @input="inputFn"></a-input>
   </div>
 </template>
 
