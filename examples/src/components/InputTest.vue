@@ -103,6 +103,11 @@ const clearFn = () => {
     <a-input password></a-input>
   </div>
 
+  <p>文本框 - password disabled</p>
+  <div class="col-gap">
+    <a-input password disabled></a-input>
+  </div>
+
   <p>文本框 - 数据双向绑定</p>
   <p>{{ info }}</p>
   <div class="col-gap">

@@ -8,7 +8,7 @@ defineOptions({
   name: "AInput",
 });
 
-const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password, clearable } = defineProps({
+const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password, clearable, disabled } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -44,7 +44,7 @@ const handleBlur = () => {
 };
 
 const _isPrefix = computed(() => prefixIcon || prefix);
-const _isSuffix = computed(() => suffixIcon || suffix || password || clearable);
+const _isSuffix = computed(() => suffixIcon || suffix || _showPwdIcon.value || _showClearIcon.value);
 
 // const slots = useSlots(); // 使用 useSlots 获取插槽, 本次我不需要使用，可以直接在模板内使用 $slots 获取插槽对象
 const slots = useSlots();
@@ -67,6 +67,14 @@ const _pwdIcon = computed(() => {
 });
 
 const modelValue = defineModel({ default: "" });
+
+const _showPwdIcon = computed(() => {
+  return password && !disabled;
+});
+
+const _showClearIcon = computed(() => {
+  return clearable && modelValue.value && !disabled && !password;
+});
 
 const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
@@ -117,9 +125,9 @@ const _inputRef = useTemplateRef("input-ref");
         <a-icon v-if="suffixIcon" :icon="suffixIcon"></a-icon>
         <span v-if="suffix">{{ suffix }}</span>
         <!-- 密码框 -->
-        <a-icon :icon="_pwdIcon" v-if="password" @click="_pwdVisible = !_pwdVisible"></a-icon>
+        <a-icon :icon="_pwdIcon" v-if="_showPwdIcon" @click="_pwdVisible = !_pwdVisible"></a-icon>
         <!-- 清空的图标 -->
-        <a-icon :icon="XCircle" v-if="clearable && modelValue !== '' && !password" @click="clearHandler"></a-icon>
+        <a-icon :icon="XCircle" v-if="_showClearIcon" @click="clearHandler"></a-icon>
       </div>
     </div>
     <!-- 后置区域 -->
