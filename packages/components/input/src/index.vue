@@ -1,13 +1,13 @@
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { ref, computed, useSlots } from "vue";
+import { ref, computed, useSlots, provide } from "vue";
 import { AIcon } from "@ui-library/components";
 
 defineOptions({
   name: "AInput",
 });
 
-const { prefixIcon, suffixIcon, prefix, suffix, prepend, append } = defineProps({
+const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -46,6 +46,10 @@ const slots = useSlots();
 
 const _isPrepend = computed(() => slots.prepend || prepend);
 const _isAppend = computed(() => slots.append || append);
+
+// 注入 size
+// 内部的 button 组件会通过 provide 获取到 groupSize 值，并使用
+provide("groupSize", size);
 </script>
 
 <template>

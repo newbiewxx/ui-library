@@ -57,7 +57,7 @@ import { PlusCircle, Calendar } from "@ui-library/icons";
   </div>
 
   <div class="col-gap">
-    <a-input>
+    <a-input size="large">
       <!-- 具名插槽 -->
       <!-- 前置内容 -->
       <template #prepend>
