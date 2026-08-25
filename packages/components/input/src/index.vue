@@ -2,13 +2,13 @@
 import { useNamespace } from "@ui-library/hooks";
 import { ref, computed, useSlots, provide } from "vue";
 import { AIcon } from "@ui-library/components";
-import { EyeOff, Eye } from "@ui-library/icons";
+import { EyeOff, Eye, XCircle } from "@ui-library/icons";
 
 defineOptions({
   name: "AInput",
 });
 
-const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password } = defineProps({
+const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password, clearable } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -28,9 +28,10 @@ const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password 
   prepend: String,
   append: String,
   password: Boolean,
+  clearable: Boolean,
 });
 
-const emit = defineEmits(["input"]);
+const emit = defineEmits(["input", "clear"]);
 
 const ns = useNamespace("input");
 
@@ -43,7 +44,7 @@ const handleBlur = () => {
 };
 
 const _isPrefix = computed(() => prefixIcon || prefix);
-const _isSuffix = computed(() => suffixIcon || suffix || password);
+const _isSuffix = computed(() => suffixIcon || suffix || password || clearable);
 
 // const slots = useSlots(); // 使用 useSlots 获取插槽, 本次我不需要使用，可以直接在模板内使用 $slots 获取插槽对象
 const slots = useSlots();
@@ -71,6 +72,12 @@ const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
   // 触发自定义的 input 事件
   emit("input", e.currentTarget.value, e);
+};
+
+const clearHandler = () => {
+  modelValue.value = "";
+  emit("input", "");
+  emit("clear");
 };
 </script>
 
@@ -106,6 +113,8 @@ const inputHandler = e => {
         <span v-if="suffix">{{ suffix }}</span>
         <!-- 密码框 -->
         <a-icon :icon="_pwdIcon" v-if="password" @click="_pwdVisible = !_pwdVisible"></a-icon>
+        <!-- 清空的图标 -->
+        <a-icon :icon="XCircle" v-if="clearable && modelValue !== ''" @click="clearHandler"></a-icon>
       </div>
     </div>
     <!-- 后置区域 -->

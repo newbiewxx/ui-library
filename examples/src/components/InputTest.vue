@@ -8,6 +8,9 @@ const inputFn = (value, e) => {
   console.log(value);
   console.log(e);
 };
+const clearFn = () => {
+  console.log('文本框内容被清空了！')
+}
 </script>
 
 <template>
@@ -103,7 +106,7 @@ const inputFn = (value, e) => {
   <p>文本框 - 数据双向绑定</p>
   <p>{{ info }}</p>
   <div class="col-gap">
-    <a-input v-model="info" @input="inputFn"></a-input>
+    <a-input v-model="info" @input="inputFn" @clear="clearFn" clearable></a-input>
   </div>
 </template>
 
