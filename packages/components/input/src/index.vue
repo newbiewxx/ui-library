@@ -1,6 +1,6 @@
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { ref, computed, useSlots, provide } from "vue";
+import { ref, computed, useSlots, provide, useTemplateRef } from "vue";
 import { AIcon } from "@ui-library/components";
 import { EyeOff, Eye, XCircle } from "@ui-library/icons";
 
@@ -78,7 +78,11 @@ const clearHandler = () => {
   modelValue.value = "";
   emit("input", "");
   emit("clear");
+  // 聚焦
+  _inputRef.value?.focus();
 };
+
+const _inputRef = useTemplateRef("input-ref");
 </script>
 
 <template>
@@ -106,6 +110,7 @@ const clearHandler = () => {
         :disabled
         :value="modelValue"
         @input="inputHandler"
+        ref="input-ref"
       />
       <!-- 后缀区域 -->
       <div v-if="_isSuffix" :class="[ns.e('fix-wrapper'), ns.e('suffix')]">
@@ -114,7 +119,7 @@ const clearHandler = () => {
         <!-- 密码框 -->
         <a-icon :icon="_pwdIcon" v-if="password" @click="_pwdVisible = !_pwdVisible"></a-icon>
         <!-- 清空的图标 -->
-        <a-icon :icon="XCircle" v-if="clearable && modelValue !== ''" @click="clearHandler"></a-icon>
+        <a-icon :icon="XCircle" v-if="clearable && modelValue !== '' && !password" @click="clearHandler"></a-icon>
       </div>
     </div>
     <!-- 后置区域 -->

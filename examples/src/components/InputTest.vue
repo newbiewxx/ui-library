@@ -9,8 +9,8 @@ const inputFn = (value, e) => {
   console.log(e);
 };
 const clearFn = () => {
-  console.log('文本框内容被清空了！')
-}
+  console.log("文本框内容被清空了！");
+};
 </script>
 
 <template>
@@ -108,6 +108,11 @@ const clearFn = () => {
   <div class="col-gap">
     <a-input v-model="info" @input="inputFn" @clear="clearFn" clearable></a-input>
   </div>
+
+  <br />
+  <br />
+  <br />
+  <br />
 </template>
 
 <style>
