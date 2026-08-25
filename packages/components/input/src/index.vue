@@ -7,7 +7,7 @@ defineOptions({
   name: "AInput",
 });
 
-const { prefixIcon, suffixIcon } = defineProps({
+const { prefixIcon, suffixIcon, prefix, suffix } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -21,6 +21,8 @@ const { prefixIcon, suffixIcon } = defineProps({
   round: Boolean,
   prefixIcon: [String, Object],
   suffixIcon: [String, Object],
+  prefix: String,
+  suffix: String,
 });
 
 const ns = useNamespace("input");
@@ -33,8 +35,8 @@ const handleBlur = () => {
   _isFocus.value = false;
 };
 
-const _isPrefix = computed(() => prefixIcon);
-const _isSuffix = computed(() => suffixIcon);
+const _isPrefix = computed(() => prefixIcon || prefix);
+const _isSuffix = computed(() => suffixIcon || suffix);
 </script>
 
 <template>
@@ -45,7 +47,8 @@ const _isSuffix = computed(() => suffixIcon);
     <div :class="[ns.e('wrapper')]">
       <!-- 前缀区域 -->
       <div v-if="_isPrefix" :class="[ns.e('fix-wrapper'), ns.e('prefix')]">
-        <a-icon :icon="prefixIcon"></a-icon>
+        <a-icon v-if="prefixIcon" :icon="prefixIcon"></a-icon>
+        <span v-if="prefix">{{ prefix }}</span>
       </div>
       <input
         type="text"
@@ -58,7 +61,8 @@ const _isSuffix = computed(() => suffixIcon);
       />
       <!-- 后缀区域 -->
       <div v-if="_isSuffix" :class="[ns.e('fix-wrapper'), ns.e('suffix')]">
-        <a-icon :icon="suffixIcon"></a-icon>
+        <a-icon v-if="suffixIcon" :icon="suffixIcon"></a-icon>
+        <span v-if="suffix">{{ suffix }}</span>
       </div>
     </div>
     <!-- 后置区域 -->
