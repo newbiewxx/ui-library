@@ -39,7 +39,6 @@ const _isPrefix = computed(() => prefixIcon || prefix);
 const _isSuffix = computed(() => suffixIcon || suffix);
 
 // const slots = useSlots(); // 使用 useSlots 获取插槽, 本次我不需要使用，可以直接在模板内使用 $slots 获取插槽对象
-
 </script>
 
 <template>
@@ -47,10 +46,10 @@ const _isSuffix = computed(() => suffixIcon || suffix);
     :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled), ns.m('size', size), ns.is('round', round)]"
   >
     <!-- 前置区域 -->
-    <div v-if="$slots.prepend" :class="[ns.e('aside-wrapper')]">
+    <div v-if="$slots.prepend" :class="[ns.e('aside-wrapper'), ns.e('prepend')]">
       <slot name="prepend"></slot>
     </div>
-    <div :class="[ns.e('wrapper')]">
+    <div :class="[ns.e('wrapper'), ns.is('prepend', $slots.prepend), ns.is('append', $slots.append)]">
       <!-- 前缀区域 -->
       <div v-if="_isPrefix" :class="[ns.e('fix-wrapper'), ns.e('prefix')]">
         <a-icon v-if="prefixIcon" :icon="prefixIcon"></a-icon>
@@ -72,7 +71,7 @@ const _isSuffix = computed(() => suffixIcon || suffix);
       </div>
     </div>
     <!-- 后置区域 -->
-    <div v-if="$slots.append" :class="[ns.e('aside-wrapper')]">
+    <div v-if="$slots.append" :class="[ns.e('aside-wrapper'), ns.e('append')]">
       <slot name="append"></slot>
     </div>
   </div>
