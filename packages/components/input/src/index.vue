@@ -8,7 +8,20 @@ defineOptions({
   name: "AInput",
 });
 
-const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password, clearable, disabled } = defineProps({
+const {
+  prefixIcon,
+  suffixIcon,
+  prefix,
+  suffix,
+  prepend,
+  append,
+  size,
+  password,
+  clearable,
+  disabled,
+  count,
+  maxLength,
+} = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -29,6 +42,7 @@ const { prefixIcon, suffixIcon, prefix, suffix, prepend, append, size, password,
   append: String,
   password: Boolean,
   clearable: Boolean,
+  count: Boolean,
 });
 
 const emit = defineEmits(["input", "clear"]);
@@ -44,7 +58,9 @@ const handleBlur = () => {
 };
 
 const _isPrefix = computed(() => prefixIcon || prefix);
-const _isSuffix = computed(() => suffixIcon || suffix || _showPwdIcon.value || _showClearIcon.value);
+const _isSuffix = computed(
+  () => suffixIcon || suffix || _showPwdIcon.value || _showClearIcon.value || _showCount.value
+);
 
 // const slots = useSlots(); // 使用 useSlots 获取插槽, 本次我不需要使用，可以直接在模板内使用 $slots 获取插槽对象
 const slots = useSlots();
@@ -74,6 +90,10 @@ const _showPwdIcon = computed(() => {
 
 const _showClearIcon = computed(() => {
   return clearable && modelValue.value && !disabled && !password;
+});
+
+const _showCount = computed(() => {
+  return maxLength && count && !disabled;
 });
 
 const inputHandler = e => {
@@ -128,6 +148,8 @@ const _inputRef = useTemplateRef("input-ref");
         <a-icon :icon="_pwdIcon" v-if="_showPwdIcon" @click="_pwdVisible = !_pwdVisible"></a-icon>
         <!-- 清空的图标 -->
         <a-icon :icon="XCircle" v-if="_showClearIcon" @click="clearHandler"></a-icon>
+        <!-- 统计字数 -->
+        <span v-if="_showCount">{{ modelValue.length }}/{{ maxLength }}</span>
       </div>
     </div>
     <!-- 后置区域 -->
