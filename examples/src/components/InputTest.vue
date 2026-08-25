@@ -81,6 +81,11 @@ import { PlusCircle, Calendar } from "@ui-library/icons";
       </template>
     </a-input>
   </div>
+
+  <p>文本框 - 前置、后置文本内容</p>
+  <div class="col-gap">
+    <a-input prepend="https://" append=".com"></a-input>
+  </div>
 </template>
 
 <style>
