@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="[ns.b()]" :style="styledMargin">
+  <component :is="tag" :class="[ns.b()]" :style="[styledMargin, styledGowGap]">
     <slot></slot>
   </component>
 </template>
@@ -12,13 +12,18 @@ defineOptions({
   name: "ARow",
 });
 
-const { gutter } = defineProps({
+const { gutter, gap } = defineProps({
   tag: {
     type: String,
     default: "div",
   },
 
   gutter: {
+    type: Number,
+    default: 0,
+  },
+
+  gap: {
     type: Number,
     default: 0,
   },
@@ -36,6 +41,14 @@ const styledMargin = computed(() => {
   return {
     marginLeft: halfGutter,
     marginRight: halfGutter,
+  };
+});
+
+const styledGowGap = computed(() => {
+  if (!gap) return {};
+
+  return {
+    rowGap: gap + "px",
   };
 });
 </script>
