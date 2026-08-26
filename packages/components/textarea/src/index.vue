@@ -6,7 +6,7 @@ defineOptions({
   name: "ATextarea",
 });
 
-const { disabled, count, maxLength, width } = defineProps({
+const { disabled, count, maxLength, width, rows } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -15,6 +15,7 @@ const { disabled, count, maxLength, width } = defineProps({
   maxLength: [String, Number],
   count: Boolean,
   width: String,
+  rows: [String, Number],
 });
 
 const emit = defineEmits([
@@ -85,6 +86,7 @@ defineExpose({
   <div :class="[ns.b(), ns.is('focus', isFocus), ns.is('disabled', disabled)]" :style="styleWidth">
     <div :class="[ns.e('wrapper'), ns.e('wrapper-multi')]">
       <textarea
+        :rows
         :placeholder
         :class="[ns.e('inner'), ns.e('multi')]"
         :disabled

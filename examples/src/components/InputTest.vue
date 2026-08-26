@@ -208,7 +208,7 @@ const inputRef = useTemplateRef("inputRef");
 
   <p>文本域 - textarea - {{ info }}</p>
   <div class="col-gap">
-    <a-textarea width="200" count max-length="10" v-model="info"></a-textarea>
+    <a-textarea width="200" count max-length="10" v-model="info" rows="10"></a-textarea>
   </div>
 
   <br />
