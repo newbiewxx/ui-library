@@ -18,6 +18,13 @@ const focusFn = e => {
 const blurFn = e => {
   console.log("blur:", e);
 };
+
+const mouseenterFn = e => {
+  console.log("mouseenter:", e);
+};
+const mouseleaveFn = e => {
+  console.log("mouseleave:", e);
+};
 </script>
 
 <template>
@@ -131,6 +138,11 @@ const blurFn = e => {
   <p>文本框 - focus 和 blur 事件</p>
   <div class="col-gap">
     <a-input @focus="focusFn" @blur="blurFn"></a-input>
+  </div>
+
+  <p>文本框 - mouseenter 和 mouseleave 事件</p>
+  <div class="col-gap">
+    <a-input @mouseenter="mouseenterFn" @mouseleave="mouseleaveFn"></a-input>
   </div>
 
   <br />

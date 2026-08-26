@@ -47,7 +47,7 @@ const {
   width: String,
 });
 
-const emit = defineEmits(["input", "clear", "blur", "focus"]);
+const emit = defineEmits(["input", "clear", "blur", "focus", "mouseenter", "mouseleave"]);
 
 const ns = useNamespace("input");
 
@@ -106,7 +106,7 @@ const uStyle = useStyle();
 
 const styleWidth = uStyle.width(width);
 
-const { isFocus, focusEvent, blurEvent } = useEvent();
+const { isFocus, focusEvent, blurEvent, mouseenterEvent, mouseleaveEvent } = useEvent();
 
 const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
@@ -151,6 +151,8 @@ const _inputRef = useTemplateRef("input-ref");
         :disabled
         :value="modelValue"
         @input="inputHandler"
+        @mouseenter="mouseenterEvent"
+        @mouseleave="mouseleaveEvent"
         ref="input-ref"
       />
       <!-- 后缀区域 -->
