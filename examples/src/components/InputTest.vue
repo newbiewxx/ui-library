@@ -11,6 +11,13 @@ const inputFn = (value, e) => {
 const clearFn = () => {
   console.log("文本框内容被清空了！");
 };
+
+const focusFn = e => {
+  console.log("focus:", e);
+};
+const blurFn = e => {
+  console.log("blur:", e);
+};
 </script>
 
 <template>
@@ -119,6 +126,11 @@ const clearFn = () => {
     <a-input count max-length="5" v-model="info" width="200px"></a-input>
     <!-- 如果文本框只有 count 属性，没有 max-length 属性，则不应该展示统计的字数 -->
     <a-input count width="200px"></a-input>
+  </div>
+
+  <p>文本框 - focus 和 blur 事件</p>
+  <div class="col-gap">
+    <a-input @focus="focusFn" @blur="blurFn"></a-input>
   </div>
 
   <br />

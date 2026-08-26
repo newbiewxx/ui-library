@@ -1,5 +1,5 @@
 <script setup>
-import { useNamespace, useStyle } from "@ui-library/hooks";
+import { useNamespace, useStyle, useEvent } from "@ui-library/hooks";
 import { ref, computed, useSlots, provide, useTemplateRef } from "vue";
 import { AIcon } from "@ui-library/components";
 import { EyeOff, Eye, XCircle } from "@ui-library/icons";
@@ -47,17 +47,17 @@ const {
   width: String,
 });
 
-const emit = defineEmits(["input", "clear"]);
+const emit = defineEmits(["input", "clear", "blur", "focus"]);
 
 const ns = useNamespace("input");
 
-const _isFocus = ref(false);
-const handleFocus = () => {
-  _isFocus.value = true;
-};
-const handleBlur = () => {
-  _isFocus.value = false;
-};
+// const _isFocus = ref(false);
+// const handleFocus = () => {
+//   _isFocus.value = true;
+// };
+// const handleBlur = () => {
+//   _isFocus.value = false;
+// };
 
 const _isPrefix = computed(() => prefixIcon || prefix);
 const _isSuffix = computed(
@@ -106,6 +106,8 @@ const uStyle = useStyle();
 
 const styleWidth = uStyle.width(width);
 
+const { isFocus, focusEvent, blurEvent } = useEvent();
+
 const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
   // 触发自定义的 input 事件
@@ -125,7 +127,7 @@ const _inputRef = useTemplateRef("input-ref");
 
 <template>
   <div
-    :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled), ns.m('size', size), ns.is('round', round)]"
+    :class="[ns.b(), ns.is('focus', isFocus), ns.is('disabled', disabled), ns.m('size', size), ns.is('round', round)]"
     :style="styleWidth"
   >
     <!-- 前置区域 -->
@@ -143,8 +145,8 @@ const _inputRef = useTemplateRef("input-ref");
         :type="_inputType"
         :placeholder
         :class="[ns.e('inner')]"
-        @focus="handleFocus"
-        @blur="handleBlur"
+        @focus="focusEvent"
+        @blur="blurEvent"
         :maxlength="maxLength"
         :disabled
         :value="modelValue"
