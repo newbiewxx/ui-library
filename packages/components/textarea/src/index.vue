@@ -1,23 +1,12 @@
 <script setup>
 import { useNamespace, useStyle, useEvent, useExpose } from "@ui-library/hooks";
-import { ref, computed, useSlots, provide, useTemplateRef } from "vue";
-import { AIcon } from "@ui-library/components";
-import { EyeOff, Eye, XCircle } from "@ui-library/icons";
+import { computed, useTemplateRef } from "vue";
 
 defineOptions({
   name: "ATextarea",
 });
 
 const {
-  prefixIcon,
-  suffixIcon,
-  prefix,
-  suffix,
-  prepend,
-  append,
-  size,
-  password,
-  clearable,
   disabled,
   count,
   maxLength,
@@ -29,20 +18,6 @@ const {
     default: "请输入内容",
   },
   maxLength: [String, Number],
-  size: {
-    type: String,
-    default: "default",
-  },
-  round: Boolean,
-  prefixIcon: [String, Object],
-  suffixIcon: [String, Object],
-  prefix: String,
-  suffix: String,
-  // 前置和周知的文本内容
-  prepend: String,
-  append: String,
-  password: Boolean,
-  clearable: Boolean,
   count: Boolean,
   width: String,
 });
@@ -64,48 +39,7 @@ const emit = defineEmits([
 
 const ns = useNamespace("input");
 
-// const _isFocus = ref(false);
-// const handleFocus = () => {
-//   _isFocus.value = true;
-// };
-// const handleBlur = () => {
-//   _isFocus.value = false;
-// };
-
-const _isPrefix = computed(() => prefixIcon || prefix);
-const _isSuffix = computed(
-  () => suffixIcon || suffix || _showPwdIcon.value || _showClearIcon.value || _showCount.value
-);
-
-// const slots = useSlots(); // 使用 useSlots 获取插槽, 本次我不需要使用，可以直接在模板内使用 $slots 获取插槽对象
-const slots = useSlots();
-
-const _isPrepend = computed(() => slots.prepend || prepend);
-const _isAppend = computed(() => slots.append || append);
-
-// 注入 size
-// 内部的 button 组件会通过 provide 获取到 groupSize 值，并使用
-provide("groupSize", size);
-
-const _pwdVisible = ref(false);
-
-const _inputType = computed(() => {
-  return password ? (_pwdVisible.value ? "text" : "password") : "text";
-});
-
-const _pwdIcon = computed(() => {
-  return _pwdVisible.value ? Eye : EyeOff;
-});
-
 const modelValue = defineModel({ default: "" });
-
-const _showPwdIcon = computed(() => {
-  return password && !disabled;
-});
-
-const _showClearIcon = computed(() => {
-  return clearable && modelValue.value && !disabled && !password;
-});
 
 const _showCount = computed(() => {
   return maxLength && count && !disabled;
@@ -115,30 +49,18 @@ const _isColorDanger = computed(() => {
   return modelValue.value.length > Number(maxLength);
 });
 
+// 是否渲染后缀区域
+const _isSuffix = computed(() => _showCount.value);
+
 const uStyle = useStyle();
 
 const styleWidth = uStyle.width(width);
 
 const {
   isFocus,
-  focusEvent,
-  blurEvent,
-  mouseenterEvent,
-  mouseleaveEvent,
-  keydownEvent,
-  keyupEvent,
   inputEvent,
-  changeEvent,
-  compositionstartEvent,
-  compositionupdateEvent,
-  compositionendEvent,
   isComposition,
 } = useEvent();
-
-// compositionend 事件的处理函数
-const compositionendHandler = e => {
-  compositionendEvent(e).then(() => inputHandler(e));
-};
 
 const inputHandler = e => {
   // 如果当前正在组合文字，则 return 出去，避免在组合文字的过程中，触发 input 事件的逻辑
@@ -170,58 +92,22 @@ defineExpose({
 
 <template>
   <div
-    :class="[ns.b(), ns.is('focus', isFocus), ns.is('disabled', disabled), ns.m('size', size), ns.is('round', round)]"
+    :class="[ns.b(), ns.is('focus', isFocus), ns.is('disabled', disabled)]"
     :style="styleWidth"
   >
-    <!-- 前置区域 -->
-    <div v-if="_isPrepend" :class="[ns.e('aside-wrapper'), ns.e('prepend')]">
-      <slot name="prepend" v-if="slots.prepend"></slot>
-      <span :class="[ns.e('append-text')]" v-if="append">{{ append }}</span>
-    </div>
-    <div :class="[ns.e('wrapper'), ns.is('prepend', _isPrepend), ns.is('append', _isAppend)]">
-      <!-- 前缀区域 -->
-      <div v-if="_isPrefix" :class="[ns.e('fix-wrapper'), ns.e('prefix')]">
-        <a-icon v-if="prefixIcon" :icon="prefixIcon"></a-icon>
-        <span v-if="prefix">{{ prefix }}</span>
-      </div>
+    <div :class="[ns.e('wrapper')]">
       <textarea
-        :type="_inputType"
         :placeholder
         :class="[ns.e('inner')]"
-        @focus="focusEvent"
-        @blur="blurEvent"
-        :maxlength="maxLength"
         :disabled
-        :value="modelValue"
-        @input="inputHandler"
-        @mouseenter="mouseenterEvent"
-        @mouseleave="mouseleaveEvent"
-        @keydown="keydownEvent"
-        @keyup="keyupEvent"
-        @change="changeEvent"
-        @compositionstart="compositionstartEvent"
-        @compositionupdate="compositionupdateEvent"
-        @compositionend="compositionendHandler"
         ref="input-ref"
       />
       <!-- 后缀区域 -->
       <div v-if="_isSuffix" :class="[ns.e('fix-wrapper'), ns.e('suffix')]">
-        <a-icon v-if="suffixIcon" :icon="suffixIcon"></a-icon>
-        <span v-if="suffix">{{ suffix }}</span>
-        <!-- 密码框 -->
-        <a-icon :icon="_pwdIcon" v-if="_showPwdIcon" @click="_pwdVisible = !_pwdVisible"></a-icon>
-        <!-- 清空的图标 -->
-        <a-icon :icon="XCircle" v-if="_showClearIcon" @click="clearHandler"></a-icon>
-        <!-- 统计字数 -->
         <span v-if="_showCount" :class="ns.is('color-error', _isColorDanger)">
           {{ modelValue.length }}/{{ maxLength }}
         </span>
       </div>
-    </div>
-    <!-- 后置区域 -->
-    <div v-if="_isAppend" :class="[ns.e('aside-wrapper'), ns.e('append')]">
-      <slot v-if="slots.append" name="append"></slot>
-      <span :class="[ns.e('append-text')]" v-if="append">{{ append }}</span>
     </div>
   </div>
 </template>
