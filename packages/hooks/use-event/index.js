@@ -39,6 +39,16 @@ export const useEvent = () => {
     emit("change", e.target.value, e);
   };
 
+  const compositionstartEvent = e => {
+    emit("compositionstart", e);
+  };
+  const compositionupdateEvent = e => {
+    emit("compositionupdate", e);
+  };
+  const compositionendEvent = e => {
+    emit("compositionend", e);
+  };
+
   return {
     isFocus,
     focusEvent,
@@ -49,5 +59,8 @@ export const useEvent = () => {
     keyupEvent,
     inputEvent,
     changeEvent,
+    compositionstartEvent,
+    compositionupdateEvent,
+    compositionendEvent,
   };
 };

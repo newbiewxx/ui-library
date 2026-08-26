@@ -47,7 +47,20 @@ const {
   width: String,
 });
 
-const emit = defineEmits(["input", "clear", "blur", "focus", "mouseenter", "mouseleave", "keydown", "keyup", "change"]);
+const emit = defineEmits([
+  "input",
+  "clear",
+  "blur",
+  "focus",
+  "mouseenter",
+  "mouseleave",
+  "keydown",
+  "keyup",
+  "change",
+  "compositionstart",
+  "compositionupdate",
+  "compositionend",
+]);
 
 const ns = useNamespace("input");
 
@@ -116,6 +129,9 @@ const {
   keyupEvent,
   inputEvent,
   changeEvent,
+  compositionstartEvent,
+  compositionupdateEvent,
+  compositionendEvent,
 } = useEvent();
 
 const inputHandler = e => {
@@ -167,6 +183,9 @@ const _inputRef = useTemplateRef("input-ref");
         @keydown="keydownEvent"
         @keyup="keyupEvent"
         @change="changeEvent"
+        @compositionstart="compositionstartEvent"
+        @compositionupdate="compositionupdateEvent"
+        @compositionend="compositionendEvent"
         ref="input-ref"
       />
       <!-- 后缀区域 -->
