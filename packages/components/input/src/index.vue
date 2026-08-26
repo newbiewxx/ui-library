@@ -1,5 +1,5 @@
 <script setup>
-import { useNamespace, useStyle, useEvent } from "@ui-library/hooks";
+import { useNamespace, useStyle, useEvent, useExpose } from "@ui-library/hooks";
 import { ref, computed, useSlots, provide, useTemplateRef } from "vue";
 import { AIcon } from "@ui-library/components";
 import { EyeOff, Eye, XCircle } from "@ui-library/icons";
@@ -158,6 +158,14 @@ const clearHandler = () => {
 };
 
 const _inputRef = useTemplateRef("input-ref");
+
+const { focusExpose, selectExpose } = useExpose(_inputRef);
+
+defineExpose({
+  focus: focusExpose,
+  select: selectExpose,
+  clear: clearHandler,
+});
 </script>
 
 <template>

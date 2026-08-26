@@ -1,6 +1,6 @@
 <script setup>
 import { PlusCircle, Calendar } from "@ui-library/icons";
-import { ref } from "vue";
+import { ref, useTemplateRef } from "vue";
 
 const info = ref("Hello World");
 
@@ -54,6 +54,9 @@ const compositionupdateFn = e => {
 const compositionendFn = e => {
   console.log("compositionend 文字组合结束。");
 };
+
+const inputRef = useTemplateRef("inputRef");
+
 </script>
 
 <template>
@@ -192,6 +195,16 @@ const compositionendFn = e => {
       @compositionend="compositionendFn"
       @input="inputFn2"
     ></a-input>
+  </div>
+
+  <p>文本框 - expose 暴露成员</p>
+  <div class="col-gap">
+    <div class="row-gap">
+      <a-button @click="inputRef.focus()">获取焦点</a-button>
+      <a-button @click="inputRef.select()">选中文本</a-button>
+      <a-button @click="inputRef.clear()">清空内容</a-button>
+    </div>
+    <a-input ref="inputRef"></a-input>
   </div>
 
   <br />
