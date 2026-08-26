@@ -6,12 +6,7 @@ defineOptions({
   name: "ATextarea",
 });
 
-const {
-  disabled,
-  count,
-  maxLength,
-  width,
-} = defineProps({
+const { disabled, count, maxLength, width } = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
@@ -56,11 +51,7 @@ const uStyle = useStyle();
 
 const styleWidth = uStyle.width(width);
 
-const {
-  isFocus,
-  inputEvent,
-  isComposition,
-} = useEvent();
+const { isFocus, inputEvent, isComposition } = useEvent();
 
 const inputHandler = e => {
   // 如果当前正在组合文字，则 return 出去，避免在组合文字的过程中，触发 input 事件的逻辑
@@ -91,16 +82,16 @@ defineExpose({
 </script>
 
 <template>
-  <div
-    :class="[ns.b(), ns.is('focus', isFocus), ns.is('disabled', disabled)]"
-    :style="styleWidth"
-  >
-    <div :class="[ns.e('wrapper')]">
+  <div :class="[ns.b(), ns.is('focus', isFocus), ns.is('disabled', disabled)]" :style="styleWidth">
+    <div :class="[ns.e('wrapper'), ns.e('wrapper-multi')]">
       <textarea
         :placeholder
-        :class="[ns.e('inner')]"
+        :class="[ns.e('inner'), ns.e('multi')]"
         :disabled
+        :value="modelValue"
+        :maxlength="maxLength"
         ref="input-ref"
+        @input="inputHandler"
       />
       <!-- 后缀区域 -->
       <div v-if="_isSuffix" :class="[ns.e('fix-wrapper'), ns.e('suffix')]">
