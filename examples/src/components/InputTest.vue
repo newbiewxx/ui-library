@@ -25,6 +25,14 @@ const mouseenterFn = e => {
 const mouseleaveFn = e => {
   console.log("mouseleave:", e);
 };
+
+const keydownFn = (e) => {
+  console.log('keydown:', e)
+}
+const keyupFn = (e) => {
+  console.log('keyup:', e)
+}
+
 </script>
 
 <template>
@@ -143,6 +151,11 @@ const mouseleaveFn = e => {
   <p>文本框 - mouseenter 和 mouseleave 事件</p>
   <div class="col-gap">
     <a-input @mouseenter="mouseenterFn" @mouseleave="mouseleaveFn"></a-input>
+  </div>
+
+  <p>文本框 - keydown 和 keyup 事件</p>
+  <div class="col-gap">
+    <a-input @keydown="keydownFn" @keyup="keyupFn"></a-input>
   </div>
 
   <br />

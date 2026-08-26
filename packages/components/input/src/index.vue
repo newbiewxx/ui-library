@@ -47,7 +47,7 @@ const {
   width: String,
 });
 
-const emit = defineEmits(["input", "clear", "blur", "focus", "mouseenter", "mouseleave"]);
+const emit = defineEmits(["input", "clear", "blur", "focus", "mouseenter", "mouseleave", "keydown", "keyup"]);
 
 const ns = useNamespace("input");
 
@@ -106,7 +106,7 @@ const uStyle = useStyle();
 
 const styleWidth = uStyle.width(width);
 
-const { isFocus, focusEvent, blurEvent, mouseenterEvent, mouseleaveEvent } = useEvent();
+const { isFocus, focusEvent, blurEvent, mouseenterEvent, mouseleaveEvent, keydownEvent, keyupEvent } = useEvent();
 
 const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
@@ -153,6 +153,8 @@ const _inputRef = useTemplateRef("input-ref");
         @input="inputHandler"
         @mouseenter="mouseenterEvent"
         @mouseleave="mouseleaveEvent"
+        @keydown="keydownEvent"
+        @keyup="keyupEvent"
         ref="input-ref"
       />
       <!-- 后缀区域 -->

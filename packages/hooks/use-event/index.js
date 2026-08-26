@@ -25,11 +25,20 @@ export const useEvent = () => {
     emit("mouseleave", e);
   };
 
+  const keydownEvent = e => {
+    emit("keydown", e);
+  };
+  const keyupEvent = e => {
+    emit("keyup", e);
+  };
+
   return {
     isFocus,
     focusEvent,
     blurEvent,
     mouseenterEvent,
     mouseleaveEvent,
+    keydownEvent,
+    keyupEvent,
   };
 };
