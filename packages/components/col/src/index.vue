@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="[ns.b(), spanClass]" :style="styledGutter">
+  <component :is="tag" :class="[ns.b(), spanClass, offsetClass]" :style="styledGutter">
     <slot></slot>
   </component>
 </template>
@@ -12,7 +12,7 @@ defineOptions({
   name: "ACol",
 });
 
-const { span } = defineProps({
+const { span, offset } = defineProps({
   tag: {
     type: String,
     default: "div",
@@ -22,12 +22,21 @@ const { span } = defineProps({
     type: Number,
     default: 0,
   },
+
+  offset: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const ns = useNamespace("col");
 
 const spanClass = computed(() => {
   return span ? `${ns.namespace}-col-${span}` : "";
+});
+
+const offsetClass = computed(() => {
+  return offset ? `${ns.namespace}-col-offset-${offset}` : "";
 });
 
 const gutter = inject("gutter");
