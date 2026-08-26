@@ -1,12 +1,12 @@
 <template>
-  <component :is="tag" :class="[ns.b(), spanClass]">
+  <component :is="tag" :class="[ns.b(), spanClass]" :style="styledGutter">
     <slot></slot>
   </component>
 </template>
 
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { computed } from "vue";
+import { computed, inject } from "vue";
 
 defineOptions({
   name: "ACol",
@@ -28,6 +28,19 @@ const ns = useNamespace("col");
 
 const spanClass = computed(() => {
   return span ? `${ns.namespace}-col-${span}` : "";
+});
+
+const gutter = inject("gutter");
+
+const styledGutter = computed(() => {
+  if (!gutter) return {};
+
+  const gutterVal = gutter / 2 + "px";
+
+  return {
+    paddingLeft: gutterVal,
+    paddingRight: gutterVal,
+  };
 });
 </script>
 

@@ -31,6 +31,17 @@
     <a-col :span="4">4</a-col>
     <a-col :span="4">4</a-col>
   </a-row>
+
+  <div style="overflow-x: hidden">
+    <a-row :gutter="20">
+      <a-col :span="4">4</a-col>
+      <a-col :span="4">4</a-col>
+      <a-col :span="4">4</a-col>
+      <a-col :span="4">4</a-col>
+      <a-col :span="4">4</a-col>
+      <a-col :span="4">4</a-col>
+    </a-row>
+  </div>
 </template>
 
 <script setup></script>
