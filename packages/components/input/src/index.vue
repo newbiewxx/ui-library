@@ -96,6 +96,10 @@ const _showCount = computed(() => {
   return maxLength && count && !disabled;
 });
 
+const _isColorDanger = computed(() => {
+  return modelValue.value.length > Number(maxLength);
+});
+
 const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
   // 触发自定义的 input 事件
@@ -149,7 +153,9 @@ const _inputRef = useTemplateRef("input-ref");
         <!-- 清空的图标 -->
         <a-icon :icon="XCircle" v-if="_showClearIcon" @click="clearHandler"></a-icon>
         <!-- 统计字数 -->
-        <span v-if="_showCount">{{ modelValue.length }}/{{ maxLength }}</span>
+        <span v-if="_showCount" :class="ns.is('color-error', _isColorDanger)">
+          {{ modelValue.length }}/{{ maxLength }}
+        </span>
       </div>
     </div>
     <!-- 后置区域 -->
