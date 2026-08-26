@@ -4,5 +4,6 @@ import AIcon from "@ui-library/components/icon";
 import AInput from "@ui-library/components/input";
 import ATextarea from "@ui-library/components/textarea";
 import ARow from "@ui-library/components/row";
+import ACol from "@ui-library/components/col";
 
-export default [AButton, AButtonGroup, AIcon, AInput, ATextarea, ARow];
+export default [AButton, AButtonGroup, AIcon, AInput, ATextarea, ARow, ACol];
