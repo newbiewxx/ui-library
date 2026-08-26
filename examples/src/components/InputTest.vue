@@ -56,7 +56,6 @@ const compositionendFn = e => {
 };
 
 const inputRef = useTemplateRef("inputRef");
-
 </script>
 
 <template>
@@ -205,6 +204,11 @@ const inputRef = useTemplateRef("inputRef");
       <a-button @click="inputRef.clear()">清空内容</a-button>
     </div>
     <a-input ref="inputRef"></a-input>
+  </div>
+
+  <p>文本域 - textarea</p>
+  <div class="col-gap">
+    <a-textarea></a-textarea>
   </div>
 
   <br />
