@@ -32,6 +32,13 @@ export const useEvent = () => {
     emit("keyup", e);
   };
 
+  const inputEvent = e => {
+    emit("input", e.target.value, e);
+  };
+  const changeEvent = e => {
+    emit("change", e.target.value, e);
+  };
+
   return {
     isFocus,
     focusEvent,
@@ -40,5 +47,7 @@ export const useEvent = () => {
     mouseleaveEvent,
     keydownEvent,
     keyupEvent,
+    inputEvent,
+    changeEvent,
   };
 };

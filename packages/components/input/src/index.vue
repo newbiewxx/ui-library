@@ -47,7 +47,7 @@ const {
   width: String,
 });
 
-const emit = defineEmits(["input", "clear", "blur", "focus", "mouseenter", "mouseleave", "keydown", "keyup"]);
+const emit = defineEmits(["input", "clear", "blur", "focus", "mouseenter", "mouseleave", "keydown", "keyup", "change"]);
 
 const ns = useNamespace("input");
 
@@ -106,12 +106,23 @@ const uStyle = useStyle();
 
 const styleWidth = uStyle.width(width);
 
-const { isFocus, focusEvent, blurEvent, mouseenterEvent, mouseleaveEvent, keydownEvent, keyupEvent } = useEvent();
+const {
+  isFocus,
+  focusEvent,
+  blurEvent,
+  mouseenterEvent,
+  mouseleaveEvent,
+  keydownEvent,
+  keyupEvent,
+  inputEvent,
+  changeEvent,
+} = useEvent();
 
 const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
   // 触发自定义的 input 事件
-  emit("input", e.currentTarget.value, e);
+  // emit("input", e.currentTarget.value, e);
+  inputEvent(e);
 };
 
 const clearHandler = () => {
@@ -155,6 +166,7 @@ const _inputRef = useTemplateRef("input-ref");
         @mouseleave="mouseleaveEvent"
         @keydown="keydownEvent"
         @keyup="keyupEvent"
+        @change="changeEvent"
         ref="input-ref"
       />
       <!-- 后缀区域 -->
