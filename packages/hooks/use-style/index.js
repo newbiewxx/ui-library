@@ -1,9 +1,10 @@
 export const useStyle = () => {
+  const reg = /^\d+$/;
   const fontSize = value => {
     if (!value) return {};
 
     // only digital value
-    const reg = /^\d+$/;
+
     if (reg.test(value)) {
       return { fontSize: value + "px" };
     } else {
@@ -17,8 +18,15 @@ export const useStyle = () => {
     return { color: value };
   };
 
+  const width = value => {
+    if (!value) return {};
+    const targetValue = reg.test(value) ? value + "px" : value;
+    return { width: targetValue };
+  };
+
   return {
     fontSize,
     color,
+    width,
   };
 };

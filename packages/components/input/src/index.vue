@@ -1,5 +1,5 @@
 <script setup>
-import { useNamespace } from "@ui-library/hooks";
+import { useNamespace, useStyle } from "@ui-library/hooks";
 import { ref, computed, useSlots, provide, useTemplateRef } from "vue";
 import { AIcon } from "@ui-library/components";
 import { EyeOff, Eye, XCircle } from "@ui-library/icons";
@@ -21,6 +21,7 @@ const {
   disabled,
   count,
   maxLength,
+  width,
 } = defineProps({
   disabled: Boolean,
   placeholder: {
@@ -43,6 +44,7 @@ const {
   password: Boolean,
   clearable: Boolean,
   count: Boolean,
+  width: String,
 });
 
 const emit = defineEmits(["input", "clear"]);
@@ -100,6 +102,10 @@ const _isColorDanger = computed(() => {
   return modelValue.value.length > Number(maxLength);
 });
 
+const uStyle = useStyle();
+
+const styleWidth = uStyle.width(width);
+
 const inputHandler = e => {
   modelValue.value = e.currentTarget.value;
   // 触发自定义的 input 事件
@@ -120,6 +126,7 @@ const _inputRef = useTemplateRef("input-ref");
 <template>
   <div
     :class="[ns.b(), ns.is('focus', _isFocus), ns.is('disabled', disabled), ns.m('size', size), ns.is('round', round)]"
+    :style="styleWidth"
   >
     <!-- 前置区域 -->
     <div v-if="_isPrepend" :class="[ns.e('aside-wrapper'), ns.e('prepend')]">
