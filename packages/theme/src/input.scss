@@ -152,6 +152,19 @@
       padding-left: 5px;
     }
 
+    @include mixins.e(suffix-multi) {
+      padding-left: 5px;
+      position: absolute;
+      bottom: 3px;
+      right: 15px;
+      font-size: 12px;
+      background-color: rgb(255, 255, 255);
+      height: 12px;
+      line-height: 12px;
+      border-radius: 12px;
+      padding: 1px;
+    }
+
     @include mixins.s(color-error, false) {
       color: var(#{fn.getVarName(color, error)});
     }
