@@ -10,6 +10,10 @@ const inputFn = (value, e) => {
   console.log(e);
 };
 
+const inputFn2 = value => {
+  console.log("input:", value);
+};
+
 const changeFn = (value, e) => {
   console.log("change:");
   console.log(value);
@@ -186,6 +190,7 @@ const compositionendFn = e => {
       @compositionstart="compositionstartFn"
       @compositionupdate="compositionupdateFn"
       @compositionend="compositionendFn"
+      @input="inputFn2"
     ></a-input>
   </div>
 

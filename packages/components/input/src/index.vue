@@ -132,9 +132,17 @@ const {
   compositionstartEvent,
   compositionupdateEvent,
   compositionendEvent,
+  isComposition,
 } = useEvent();
 
+// compositionend 事件的处理函数
+const compositionendHandler = e => {
+  compositionendEvent(e).then(() => inputHandler(e));
+};
+
 const inputHandler = e => {
+  // 如果当前正在组合文字，则 return 出去，避免在组合文字的过程中，触发 input 事件的逻辑
+  if (isComposition.value) return;
   modelValue.value = e.currentTarget.value;
   // 触发自定义的 input 事件
   // emit("input", e.currentTarget.value, e);
@@ -185,7 +193,7 @@ const _inputRef = useTemplateRef("input-ref");
         @change="changeEvent"
         @compositionstart="compositionstartEvent"
         @compositionupdate="compositionupdateEvent"
-        @compositionend="compositionendEvent"
+        @compositionend="compositionendHandler"
         ref="input-ref"
       />
       <!-- 后缀区域 -->
