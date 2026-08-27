@@ -1,5 +1,8 @@
 import { componentInstall } from "@ui-library/utils";
-import ACheckbox from "./src/index.vue";
+import Checkbox from "./src/index.vue";
+import CheckboxGroup from "./src/checkbox-group.vue";
 
-export default componentInstall(ACheckbox);
-export { ACheckbox };
+const ACheckbox = componentInstall(Checkbox);
+const ACheckboxGroup = componentInstall(CheckboxGroup);
+export { ACheckbox, ACheckboxGroup };
+export default { ACheckbox, ACheckboxGroup };
