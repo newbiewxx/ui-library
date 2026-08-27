@@ -1,9 +1,9 @@
 <template>
-  <component :is="tag" :class="[ns.b(), ns.is('checked', checked)]">
+  <component :is="tag" :class="[ns.b(), ns.is('checked', checked), ns.is('disabled', disabled)]">
     <!-- 复选框容器 -->
     <span :class="[ns.b('wrapper')]">
       <!-- 真实的复选框 -->
-      <input type="checkbox" :class="[ns.e('input')]" />
+      <input type="checkbox" :class="[ns.e('input')]" :disabled />
       <!-- 模拟出来的复选框 -->
       <span :class="[ns.e('inner')]">
         <a-icon :icon="Check" :class="[ns.e('icon-check')]"></a-icon>
@@ -32,6 +32,7 @@ defineProps({
   },
   label: String,
   checked: Boolean,
+  disabled: Boolean,
 });
 
 const ns = useNamespace("checkbox");
