@@ -6,7 +6,7 @@
     <!-- 复选框容器 -->
     <span :class="[ns.b('wrapper')]">
       <!-- 真实的复选框 -->
-      <input type="checkbox" :class="[ns.e('input')]" :disabled="isDisabled" v-model="model" />
+      <input type="checkbox" :class="[ns.e('input')]" :disabled="isDisabled" v-model="model" :checked="isChecked" />
       <!-- 模拟出来的复选框 -->
       <span :class="[ns.e('inner')]">
         <a-icon :icon="Check" :class="[ns.e('icon-check')]"></a-icon>

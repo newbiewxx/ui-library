@@ -7,11 +7,12 @@ export const useCheckboxModel = ({ cbModel }) => {
   const model = computed({
     get() {
       // return cbModel.value;
-      if (typeof cbModel.value === "boolean") {
-        return cbModel.value;
-      } else {
-        return cbModel.value === props.trueValue;
-      }
+      // if (typeof cbModel.value === "boolean") {
+      //   return cbModel.value;
+      // } else {
+      //   return cbModel.value === props.trueValue;
+      // }
+      return cbModel.value;
     },
 
     set(val) {

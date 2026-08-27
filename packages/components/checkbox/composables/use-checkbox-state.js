@@ -2,6 +2,7 @@ import { computed, getCurrentInstance } from "vue";
 
 export const useCheckboxState = ({ groupProps, isGroupMode, model }) => {
   const instance = getCurrentInstance();
+  const props = instance.props;
 
   const cbSize = computed(() => {
     if (instance.props.size === "default") {
@@ -18,7 +19,13 @@ export const useCheckboxState = ({ groupProps, isGroupMode, model }) => {
   const isDisabled = computed(() => instance.props.disabled);
 
   // const isChecked = computed(() => instance.props.checked);
-  const isChecked = computed(() => model.value);
+  const isChecked = computed(() => {
+    if (typeof model.value === "boolean") {
+      return model.value;
+    } else {
+      return model.value === props.trueValue;
+    }
+  });
 
   return {
     cbSize,
