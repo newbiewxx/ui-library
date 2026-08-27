@@ -6,6 +6,7 @@
 
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
+import { useSonOfContainer } from "./composition";
 
 defineOptions({
   name: "AFooter",
@@ -19,6 +20,8 @@ const { height } = defineProps({
 });
 
 const ns = useNamespace("footer");
+
+useSonOfContainer();
 </script>
 
 <style scoped>

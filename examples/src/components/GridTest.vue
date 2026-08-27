@@ -9,6 +9,8 @@
     </a-container>
   </a-container>
 
+  <a-aside>outside of container</a-aside>
+
   <a-row>
     <!-- a-col-值 -->
     <!-- a-col-24 -->

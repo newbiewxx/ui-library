@@ -7,6 +7,7 @@
 <script setup>
 import { useNamespace, useStyle } from "@ui-library/hooks";
 import { computed } from "vue";
+import { useSonOfContainer } from "./composition";
 
 defineOptions({
   name: "AHeader",
@@ -23,6 +24,8 @@ const ns = useNamespace("header");
 const uStyle = useStyle();
 
 const styledHeight = computed(() => uStyle.height(height));
+
+useSonOfContainer();
 </script>
 
 <style scoped></style>

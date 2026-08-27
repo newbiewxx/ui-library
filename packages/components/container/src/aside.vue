@@ -7,6 +7,7 @@
 <script setup>
 import { useNamespace, useStyle } from "@ui-library/hooks";
 import { computed } from "vue";
+import { useSonOfContainer } from "./composition";
 
 defineOptions({
   name: "AAside",
@@ -23,6 +24,8 @@ const ns = useNamespace("aside");
 
 const uStyle = useStyle();
 const styledWidth = computed(() => uStyle.width(width));
+
+useSonOfContainer();
 </script>
 
 <style scoped></style>
