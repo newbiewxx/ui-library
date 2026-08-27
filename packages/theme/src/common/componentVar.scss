@@ -97,7 +97,7 @@
 @return $input;
 }
 
-@function getCheckboxVar() {
+@function getCheckboxVar($type: "") {
   $checkbox: (
     // 基础状态
     border-color: (default: fn.getVarName(border-color, default)),
@@ -105,16 +105,23 @@
     text-color: (default: fn.getVarName(text-color, primary)),
     icon-color: (default: fn.getVarName(color, white)),
     // 禁用状态
-    // 禁用状态
-    disabled-border-color: (default: fn.getVarName(border-color, disabled)),
-    disabled-bg-color: (default: fn.getVarName(color, gray, light-9)),
-    disabled-text-color: (default: fn.getVarName(text-color, disabled)),
-    disabled-icon-color: (default: fn.getVarName(border-color, hover)),
+    disabled-border-color: (default: fn.getVarName(border-color, disabled),
+      type: fn.getVarName(color, $type, light-5)),
+    disabled-bg-color: (default: fn.getVarName(color, gray, light-9),
+      type: fn.getVarName(color, $type, light-5)),
+    disabled-text-color: (default: fn.getVarName(text-color, disabled),
+      type: fn.getVarName(text-color, disabled)),
+    disabled-icon-color: (default: fn.getVarName(border-color, hover),
+      type: fn.getVarName(color, white)),
     // 勾选状态
-    checked-border-color: (default: fn.getVarName(color, primary)),
-    checked-bg-color: (default: fn.getVarName(color, primary)),
-    checked-text-color: (default: fn.getVarName(text-color, primary)),
-    checked-icon-color: (default: fn.getVarName(color, white)),
+    checked-border-color: (default: fn.getVarName(color, primary),
+      type: fn.getVarName(color, $type)),
+    checked-bg-color: (default: fn.getVarName(color, primary),
+      type: fn.getVarName(color, $type)),
+    checked-text-color: (default: fn.getVarName(text-color, primary),
+      type: fn.getVarName(text-color, primary)),
+    checked-icon-color: (default: fn.getVarName(color, white),
+      type: fn.getVarName(color, white)),
     // 其它的私有变量（尺寸）
     size: (default: fn.getVarName(component-size, default)),
     font-size: (default: fn.getVarName(font-size, default))

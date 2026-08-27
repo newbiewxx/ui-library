@@ -1,6 +1,7 @@
 @use "./common/mixins";
 @use "./common/componentVar.scss" as comVar;
 @use "./common/function.scss" as fn;
+@use "./common/var.scss";
 
 @include mixins.b("checkbox") {
   // 混入私有变量
@@ -38,6 +39,18 @@
     #{fn.getVarName(checkbox, bg-color)}: var(#{fn.getVarName(checkbox, disabled-bg-color)});
     #{fn.getVarName(checkbox, text-color)}: var(#{fn.getVarName(checkbox, disabled-text-color)});
     #{fn.getVarName(checkbox, icon-color)}: var(#{fn.getVarName(checkbox, disabled-icon-color)});
+  }
+
+  // 循环生成主题色的选择器
+  @each $type in var.$types-base {
+
+    // .a-checkbox--primary
+    @include mixins.m($type) {
+      @include mixins.s(checked) {
+        // 覆盖私有变量
+        @include mixins.set-component-var(checkbox, comVar.getCheckboxVar($type), type);
+      }
+    }
   }
 
   // 复选框容器
