@@ -5,7 +5,13 @@ export const useCheckboxState = () => {
 
   const cbSize = computed(() => instance.props.size);
 
+  const isDisabled = computed(() => instance.props.disabled);
+
+  const isChecked = computed(() => instance.props.checked);
+
   return {
     cbSize,
+    isDisabled,
+    isChecked,
   };
 };
