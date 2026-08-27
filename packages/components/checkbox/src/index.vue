@@ -1,0 +1,39 @@
+<template>
+  <component :is="tag" :class="[ns.b()]">
+    <!-- 复选框容器 -->
+    <span :class="[ns.b('wrapper')]">
+      <!-- 真实的复选框 -->
+      <input type="checkbox" :class="[ns.e('input')]" />
+      <!-- 模拟出来的复选框 -->
+      <span :class="[ns.e('inner')]">
+        <a-icon :icon="Check" :class="[ns.e('icon-check')]"></a-icon>
+      </span>
+    </span>
+    <!-- label 描述文本 -->
+    <span :class="[ns.e('label')]">
+      <slot>{{ label }}</slot>
+    </span>
+  </component>
+</template>
+
+<script setup>
+import { useNamespace } from "@ui-library/hooks";
+import { Check } from "@ui-library/icons";
+import { AIcon } from "@ui-library/components/icon";
+
+defineOptions({
+  name: "ACheckbox",
+});
+
+defineProps({
+  tag: {
+    type: String,
+    default: "label",
+  },
+  label: String,
+});
+
+const ns = useNamespace("checkbox");
+</script>
+
+<style scoped></style>

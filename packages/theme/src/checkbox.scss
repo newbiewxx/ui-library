@@ -1,0 +1,3 @@
+@use "./common/mixins";
+
+@include mixins.b("checkbox") {}

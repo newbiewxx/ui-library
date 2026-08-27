@@ -6,6 +6,7 @@ import ATextarea from "@ui-library/components/textarea";
 import ARow from "@ui-library/components/row";
 import ACol from "@ui-library/components/col";
 import { AContainer, AHeader, AFooter, AAside, AMain } from "@ui-library/components/container";
+import ACheckbox from "@ui-library/components/checkbox";
 
 export default [
   AButton,
@@ -20,4 +21,5 @@ export default [
   AFooter,
   AAside,
   AMain,
+  ACheckbox,
 ];

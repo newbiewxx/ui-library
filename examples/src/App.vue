@@ -2,7 +2,8 @@
 // import ButtonTest from "./components/ButtonTest.vue";
 // import IconTest from "./components/IconTest.vue";
 // import InputTest from "./components/InputTest.vue";
-import GridTest from "./components/GridTest.vue";
+// import GridTest from "./components/GridTest.vue";
+import CheckboxTest from "./components/CheckboxTest.vue";
 </script>
 
 <template>
@@ -10,7 +11,8 @@ import GridTest from "./components/GridTest.vue";
     <!-- <ButtonTest></ButtonTest> -->
     <!-- <IconTest /> -->
     <!-- <InputTest /> -->
-    <GridTest />
+    <!-- <GridTest /> -->
+    <CheckboxTest />
   </div>
 </template>
 
