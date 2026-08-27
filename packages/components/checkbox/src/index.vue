@@ -52,6 +52,8 @@ const { checked, trueValue, falseValue } = defineProps({
   },
 });
 
+defineEmits(["change"]);
+
 const ns = useNamespace("checkbox");
 
 const cbModel = defineModel({

@@ -17,13 +17,15 @@ export const useCheckboxModel = ({ cbModel }) => {
 
     set(val) {
       // cbModel.value = val;
+      let targetValue = val;
       if (val && props.trueValue) {
-        cbModel.value = props.trueValue;
+        targetValue = props.trueValue;
       } else if (!val && props.falseValue) {
-        cbModel.value = props.falseValue;
-      } else {
-        cbModel.value = val;
+        targetValue = props.falseValue;
       }
+
+      cbModel.value = targetValue;
+      instance.emit("change", targetValue);
     },
   });
 

@@ -49,8 +49,16 @@
 
   <p>单个复选框的 v-model</p>
   <div>
-    <a-checkbox label="北京市" type="error" v-model="value1"></a-checkbox>
-    <a-checkbox label="北京市" type="error" v-model="value2" true-value="yes" false-value="no" checked></a-checkbox>
+    <a-checkbox label="北京市" type="error" v-model="value1" @change="handleChange1"></a-checkbox>
+    <a-checkbox
+      label="北京市"
+      type="error"
+      v-model="value2"
+      true-value="yes"
+      false-value="no"
+      checked
+      @change="handleChange1"
+    ></a-checkbox>
   </div>
   <p>{{ value1 }}</p>
   <p>{{ value2 }}</p>
@@ -61,6 +69,10 @@ import { ref } from "vue";
 
 const value1 = ref(false);
 const value2 = ref(false);
+
+const handleChange1 = value => {
+  console.log("单个复选框的 change 事件：", value);
+};
 </script>
 
 <style scoped></style>
