@@ -29,7 +29,7 @@ defineOptions({
   name: "ACheckbox",
 });
 
-const { checked } = defineProps({
+const { checked, trueValue, falseValue } = defineProps({
   tag: {
     type: String,
     default: "label",
@@ -42,6 +42,14 @@ const { checked } = defineProps({
     type: String,
     default: "default",
   },
+  trueValue: {
+    type: [String, Number],
+    default: undefined,
+  },
+  falseValue: {
+    type: [String, Number],
+    default: undefined,
+  },
 });
 
 const ns = useNamespace("checkbox");
@@ -52,7 +60,16 @@ const cbModel = defineModel({
 });
 
 if (checked) {
-  cbModel.value = true;
+  // cbModel.value = true;
+  if (trueValue) {
+    cbModel.value = trueValue;
+  } else {
+    cbModel.value = true;
+  }
+} else {
+  if (falseValue) {
+    cbModel.value = falseValue;
+  }
 }
 
 const { cbSize, isDisabled, isChecked, model } = useCheckbox({ cbModel });

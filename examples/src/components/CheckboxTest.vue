@@ -50,16 +50,17 @@
   <p>单个复选框的 v-model</p>
   <div>
     <a-checkbox label="北京市" type="error" v-model="value1"></a-checkbox>
+    <a-checkbox label="北京市" type="error" v-model="value2" true-value="yes" false-value="no" checked></a-checkbox>
   </div>
   <p>{{ value1 }}</p>
+  <p>{{ value2 }}</p>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
+import { ref } from "vue";
 
 const value1 = ref(false);
-
+const value2 = ref(false);
 </script>
 
 <style scoped></style>
