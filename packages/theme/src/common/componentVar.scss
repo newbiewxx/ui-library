@@ -124,7 +124,11 @@
       type: fn.getVarName(color, white)),
     // 其它的私有变量（尺寸）
     size: (default: fn.getVarName(component-size, default)),
-    font-size: (default: fn.getVarName(font-size, default))
+    font-size: (default: fn.getVarName(font-size, default)),
+    // 复选框矩形的尺寸
+    check-size: (default: fn.getVarName(checkbox-size, default)),
+    check-round: (default: fn.getVarName(component-round, default)),
+    check-icon-size: (default: fn.getVarName(checkbox-icon-size, default))
   );
 
 @return $checkbox;

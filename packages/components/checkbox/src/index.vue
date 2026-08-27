@@ -1,5 +1,8 @@
 <template>
-  <component :is="tag" :class="[ns.b(), ns.is('checked', checked), ns.is('disabled', disabled), ns.m(type)]">
+  <component
+    :is="tag"
+    :class="[ns.b(), ns.is('checked', checked), ns.is('disabled', disabled), ns.m(type), ns.m('size', size)]"
+  >
     <!-- 复选框容器 -->
     <span :class="[ns.b('wrapper')]">
       <!-- 真实的复选框 -->
@@ -34,6 +37,10 @@ defineProps({
   checked: Boolean,
   disabled: Boolean,
   type: String,
+  size: {
+    type: String,
+    default: "default",
+  },
 });
 
 const ns = useNamespace("checkbox");
