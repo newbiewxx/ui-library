@@ -6,7 +6,7 @@
     <!-- 复选框容器 -->
     <span :class="[ns.b('wrapper')]">
       <!-- 真实的复选框 -->
-      <input type="checkbox" :class="[ns.e('input')]" :disabled="isDisabled" />
+      <input type="checkbox" :class="[ns.e('input')]" :disabled="isDisabled" v-model="model" />
       <!-- 模拟出来的复选框 -->
       <span :class="[ns.e('inner')]">
         <a-icon :icon="Check" :class="[ns.e('icon-check')]"></a-icon>
@@ -29,7 +29,7 @@ defineOptions({
   name: "ACheckbox",
 });
 
-defineProps({
+const { checked } = defineProps({
   tag: {
     type: String,
     default: "label",
@@ -46,7 +46,16 @@ defineProps({
 
 const ns = useNamespace("checkbox");
 
-const { cbSize, isDisabled, isChecked } = useCheckbox();
+const cbModel = defineModel({
+  type: [String, Number, Boolean],
+  default: false,
+});
+
+if (checked) {
+  cbModel.value = true;
+}
+
+const { cbSize, isDisabled, isChecked, model } = useCheckbox({ cbModel });
 </script>
 
 <style scoped></style>

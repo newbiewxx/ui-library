@@ -1,6 +1,6 @@
 import { computed, getCurrentInstance } from "vue";
 
-export const useCheckboxState = ({ groupProps, isGroupMode }) => {
+export const useCheckboxState = ({ groupProps, isGroupMode, model }) => {
   const instance = getCurrentInstance();
 
   const cbSize = computed(() => {
@@ -17,7 +17,8 @@ export const useCheckboxState = ({ groupProps, isGroupMode }) => {
 
   const isDisabled = computed(() => instance.props.disabled);
 
-  const isChecked = computed(() => instance.props.checked);
+  // const isChecked = computed(() => instance.props.checked);
+  const isChecked = computed(() => model.value);
 
   return {
     cbSize,
