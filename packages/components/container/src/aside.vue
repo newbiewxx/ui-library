@@ -7,7 +7,7 @@
 <script setup>
 import { useNamespace, useStyle } from "@ui-library/hooks";
 import { computed } from "vue";
-import { useSonOfContainer } from "./composition";
+import { useSonOfContainer } from "./composables";
 
 defineOptions({
   name: "AAside",

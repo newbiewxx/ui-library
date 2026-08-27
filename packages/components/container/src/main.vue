@@ -6,7 +6,7 @@
 
 <script setup>
 import { useNamespace } from "@ui-library/hooks";
-import { useSonOfContainer } from "./composition";
+import { useSonOfContainer } from "./composables";
 
 defineOptions({
   name: "AMain",

@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tag"
-    :class="[ns.b(), ns.is('checked', checked), ns.is('disabled', disabled), ns.m(type), ns.m('size', size)]"
+    :class="[ns.b(), ns.is('checked', checked), ns.is('disabled', disabled), ns.m(type), ns.m('size', cbSize)]"
   >
     <!-- 复选框容器 -->
     <span :class="[ns.b('wrapper')]">
@@ -23,6 +23,7 @@
 import { useNamespace } from "@ui-library/hooks";
 import { Check } from "@ui-library/icons";
 import { AIcon } from "@ui-library/components/icon";
+import { useCheckbox } from "../composables";
 
 defineOptions({
   name: "ACheckbox",
@@ -44,6 +45,8 @@ defineProps({
 });
 
 const ns = useNamespace("checkbox");
+
+const { cbSize } = useCheckbox();
 </script>
 
 <style scoped></style>
