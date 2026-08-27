@@ -1,4 +1,13 @@
 <template>
+  <a-container>
+    <a-aside></a-aside>
+    <a-container>
+      <a-header></a-header>
+      <a-main></a-main>
+      <a-footer></a-footer>
+    </a-container>
+  </a-container>
+
   <a-row>
     <!-- a-col-值 -->
     <!-- a-col-24 -->

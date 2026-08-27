@@ -5,3 +5,4 @@ export * from "./input";
 export * from "./textarea";
 export * from "./col";
 export * from "./row";
+export * from "./container";
