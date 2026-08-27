@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="[ns.b()]" :style="[styledMargin, styledGowGap]">
+  <component :is="tag" :class="[ns.b(), ns.is(`justify-${justify}`, !!justify)]" :style="[styledMargin, styledGowGap]">
     <slot></slot>
   </component>
 </template>
@@ -26,6 +26,11 @@ const { gutter, gap } = defineProps({
   gap: {
     type: Number,
     default: 0,
+  },
+
+  justify: {
+    type: String,
+    default: "",
   },
 });
 
